@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CanvasColor</key>
+	<dict>
+		<key>w</key>
+		<string>1</string>
+	</dict>
+	<key>ColumnAlign</key>
+	<integer>1</integer>
+	<key>ColumnSpacing</key>
+	<real>36</real>
+	<key>CreationDate</key>
+	<string>2026-04-26 00:00:00 +0000</string>
+	<key>Creator</key>
+	<string>DHPKE OmniGraffle Stencils</string>
+	<key>GraphDocumentVersion</key>
+	<integer>8</integer>
+	<key>GraphicsList</key>
+	<array>
+
+		<!-- ═══════════════════════════════════════════════════ -->
+		<!-- Q-SYS I/O Frame 8x8 (IDF-VA8)                      -->
+		<!-- Inputs (Left): 8x Mic/Line XLR                     -->
+		<!-- Outputs (Right): 8x Line Out XLR                   -->
+		<!-- Network: Dante/AES67                               -->
+		<!-- ═══════════════════════════════════════════════════ -->
+		<dict>
+			<key>Bounds</key>
+			<string>{{36, 36}, {200, 120}}</string>
+			<key>Class</key>
+			<string>ShapedGraphic</string>
+			<key>ID</key>
+			<integer>10</integer>
+			<key>Magnets</key>
+			<array>
+				<!-- Inputs - Left side (8 analog mic/line) -->
+				<string>{-1, -0.778}</string>
+				<string>{-1, -0.556}</string>
+				<string>{-1, -0.333}</string>
+				<string>{-1, -0.111}</string>
+				<string>{-1, 0.111}</string>
+				<string>{-1, 0.333}</string>
+				<string>{-1, 0.556}</string>
+				<string>{-1, 0.778}</string>
+				<!-- Outputs - Right side (8 line out) -->
+				<string>{1, -0.778}</string>
+				<string>{1, -0.556}</string>
+				<string>{1, -0.333}</string>
+				<string>{1, -0.111}</string>
+				<string>{1, 0.111}</string>
+				<string>{1, 0.333}</string>
+				<string>{1, 0.556}</string>
+				<string>{1, 0.778}</string>
+				<!-- Network top/bottom -->
+				<string>{-0.5, -1}</string>
+				<string>{0.5, -1}</string>
+				<string>{0, 1}</string>
+			</array>
+			<key>Shape</key>
+			<string>Rectangle</string>
+			<key>Style</key>
+			<dict>
+				<key>fill</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.322</string>
+						<key>g</key>
+						<string>0.584</string>
+						<key>r</key>
+						<string>0.133</string>
+					</dict>
+					<key>Draws</key>
+					<string>YES</string>
+					<key>FillType</key>
+					<integer>0</integer>
+				</dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+				<key>stroke</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.2</string>
+						<key>g</key>
+						<string>0.4</string>
+						<key>r</key>
+						<string>0.067</string>
+					</dict>
+					<key>CornerRadius</key>
+					<real>4</real>
+					<key>Width</key>
+					<real>2</real>
+				</dict>
+			</dict>
+			<key>Text</key>
+			<dict>
+				<key>Text</key>
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf2639{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;}{\colortbl;\red255\green255\blue255;}\pard\tx560\pardirnatural\qc\f0\b\fs20 \cf1 Q-SYS I/O Frame 8x8\
+\f1\b0\fs16 8x Mic/Line In (XLR) | 8x Line Out (XLR)\
+Dante/AES67 Network}</string>
+				<key>VerticalPad</key>
+				<integer>4</integer>
+			</dict>
+			<key>UserInfo</key>
+			<dict>
+				<key>product</key>
+				<string>Q-SYS I/O Frame 8x8 (IDF-VA8)</string>
+				<key>inputs</key>
+				<string>8x Mic/Line XLR, Dante/AES67</string>
+				<key>outputs</key>
+				<string>8x Line Out XLR, Dante/AES67</string>
+				<key>category</key>
+				<string>Q-SYS QIO</string>
+			</dict>
+		</dict>
+
+		<!-- ═══════════════════════════════════════════════════ -->
+		<!-- Q-SYS I/O Frame 16x16 (IDF-VA16)                   -->
+		<!-- Inputs (Left): 16x Mic/Line XLR                    -->
+		<!-- Outputs (Right): 16x Line Out XLR                  -->
+		<!-- ═══════════════════════════════════════════════════ -->
+		<dict>
+			<key>Bounds</key>
+			<string>{{36, 196}, {200, 140}}</string>
+			<key>Class</key>
+			<string>ShapedGraphic</string>
+			<key>ID</key>
+			<integer>11</integer>
+			<key>Magnets</key>
+			<array>
+				<!-- Inputs - Left side (16 analog mic/line) -->
+				<string>{-1, -0.882}</string>
+				<string>{-1, -0.765}</string>
+				<string>{-1, -0.647}</string>
+				<string>{-1, -0.529}</string>
+				<string>{-1, -0.412}</string>
+				<string>{-1, -0.294}</string>
+				<string>{-1, -0.176}</string>
+				<string>{-1, -0.059}</string>
+				<string>{-1, 0.059}</string>
+				<string>{-1, 0.176}</string>
+				<string>{-1, 0.294}</string>
+				<string>{-1, 0.412}</string>
+				<string>{-1, 0.529}</string>
+				<string>{-1, 0.647}</string>
+				<string>{-1, 0.765}</string>
+				<string>{-1, 0.882}</string>
+				<!-- Outputs - Right side (16 line out) -->
+				<string>{1, -0.882}</string>
+				<string>{1, -0.765}</string>
+				<string>{1, -0.647}</string>
+				<string>{1, -0.529}</string>
+				<string>{1, -0.412}</string>
+				<string>{1, -0.294}</string>
+				<string>{1, -0.176}</string>
+				<string>{1, -0.059}</string>
+				<string>{1, 0.059}</string>
+				<string>{1, 0.176}</string>
+				<string>{1, 0.294}</string>
+				<string>{1, 0.412}</string>
+				<string>{1, 0.529}</string>
+				<string>{1, 0.647}</string>
+				<string>{1, 0.765}</string>
+				<string>{1, 0.882}</string>
+				<!-- Network top/bottom -->
+				<string>{-0.5, -1}</string>
+				<string>{0.5, -1}</string>
+				<string>{0, 1}</string>
+			</array>
+			<key>Shape</key>
+			<string>Rectangle</string>
+			<key>Style</key>
+			<dict>
+				<key>fill</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.322</string>
+						<key>g</key>
+						<string>0.584</string>
+						<key>r</key>
+						<string>0.133</string>
+					</dict>
+					<key>Draws</key>
+					<string>YES</string>
+					<key>FillType</key>
+					<integer>0</integer>
+				</dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+				<key>stroke</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.2</string>
+						<key>g</key>
+						<string>0.4</string>
+						<key>r</key>
+						<string>0.067</string>
+					</dict>
+					<key>CornerRadius</key>
+					<real>4</real>
+					<key>Width</key>
+					<real>2</real>
+				</dict>
+			</dict>
+			<key>Text</key>
+			<dict>
+				<key>Text</key>
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf2639{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;}{\colortbl;\red255\green255\blue255;}\pard\tx560\pardirnatural\qc\f0\b\fs20 \cf1 Q-SYS I/O Frame 16x16\
+\f1\b0\fs16 16x Mic/Line In (XLR) | 16x Line Out (XLR)\
+Dante/AES67 Network}</string>
+				<key>VerticalPad</key>
+				<integer>4</integer>
+			</dict>
+			<key>UserInfo</key>
+			<dict>
+				<key>product</key>
+				<string>Q-SYS I/O Frame 16x16 (IDF-VA16)</string>
+				<key>inputs</key>
+				<string>16x Mic/Line XLR, Dante/AES67</string>
+				<key>outputs</key>
+				<string>16x Line Out XLR, Dante/AES67</string>
+				<key>category</key>
+				<string>Q-SYS QIO</string>
+			</dict>
+		</dict>
+
+		<!-- ═══════════════════════════════════════════════════ -->
+		<!-- Q-SYS USB Bridge (USBi)                            -->
+		<!-- Inputs (Left): 2x USB PC, Network                  -->
+		<!-- Outputs (Right): 2x USB out, Dante/AES67           -->
+		<!-- ═══════════════════════════════════════════════════ -->
+		<dict>
+			<key>Bounds</key>
+			<string>{{36, 376}, {200, 80}}</string>
+			<key>Class</key>
+			<string>ShapedGraphic</string>
+			<key>ID</key>
+			<integer>12</integer>
+			<key>Magnets</key>
+			<array>
+				<!-- Inputs - Left side (2 USB, 1 network, 1 Dante) -->
+				<string>{-1, -0.5}</string>
+				<string>{-1, 0}</string>
+				<string>{-1, 0.5}</string>
+				<!-- Outputs - Right side -->
+				<string>{1, -0.5}</string>
+				<string>{1, 0}</string>
+				<string>{1, 0.5}</string>
+				<!-- Top/Bottom -->
+				<string>{0, -1}</string>
+				<string>{0, 1}</string>
+			</array>
+			<key>Shape</key>
+			<string>Rectangle</string>
+			<key>Style</key>
+			<dict>
+				<key>fill</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.322</string>
+						<key>g</key>
+						<string>0.584</string>
+						<key>r</key>
+						<string>0.133</string>
+					</dict>
+					<key>Draws</key>
+					<string>YES</string>
+					<key>FillType</key>
+					<integer>0</integer>
+				</dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+				<key>stroke</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.2</string>
+						<key>g</key>
+						<string>0.4</string>
+						<key>r</key>
+						<string>0.067</string>
+					</dict>
+					<key>CornerRadius</key>
+					<real>4</real>
+					<key>Width</key>
+					<real>2</real>
+				</dict>
+			</dict>
+			<key>Text</key>
+			<dict>
+				<key>Text</key>
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf2639{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;}{\colortbl;\red255\green255\blue255;}\pard\tx560\pardirnatural\qc\f0\b\fs20 \cf1 Q-SYS USB Bridge (USBi)\
+\f1\b0\fs16 2x USB (Host/Device) | Dante/AES67\
+Gigabit Network}</string>
+				<key>VerticalPad</key>
+				<integer>4</integer>
+			</dict>
+			<key>UserInfo</key>
+			<dict>
+				<key>product</key>
+				<string>Q-SYS USB Bridge (USBi)</string>
+				<key>inputs</key>
+				<string>2x USB Type-A, Dante/AES67, Gigabit Network</string>
+				<key>outputs</key>
+				<string>2x USB Type-B, Dante/AES67, Gigabit Network</string>
+				<key>category</key>
+				<string>Q-SYS QIO</string>
+			</dict>
+		</dict>
+
+		<!-- ═══════════════════════════════════════════════════ -->
+		<!-- Q-SYS Dante AES67 Bridge                           -->
+		<!-- Inputs (Left): Dante In, AES67 In, Network         -->
+		<!-- Outputs (Right): Dante Out, AES67 Out, Network     -->
+		<!-- ═══════════════════════════════════════════════════ -->
+		<dict>
+			<key>Bounds</key>
+			<string>{{36, 496}, {200, 80}}</string>
+			<key>Class</key>
+			<string>ShapedGraphic</string>
+			<key>ID</key>
+			<integer>13</integer>
+			<key>Magnets</key>
+			<array>
+				<!-- Inputs - Left side -->
+				<string>{-1, -0.5}</string>
+				<string>{-1, 0}</string>
+				<string>{-1, 0.5}</string>
+				<!-- Outputs - Right side -->
+				<string>{1, -0.5}</string>
+				<string>{1, 0}</string>
+				<string>{1, 0.5}</string>
+				<!-- Top/Bottom -->
+				<string>{0, -1}</string>
+				<string>{0, 1}</string>
+			</array>
+			<key>Shape</key>
+			<string>Rectangle</string>
+			<key>Style</key>
+			<dict>
+				<key>fill</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.322</string>
+						<key>g</key>
+						<string>0.584</string>
+						<key>r</key>
+						<string>0.133</string>
+					</dict>
+					<key>Draws</key>
+					<string>YES</string>
+					<key>FillType</key>
+					<integer>0</integer>
+				</dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+				<key>stroke</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.2</string>
+						<key>g</key>
+						<string>0.4</string>
+						<key>r</key>
+						<string>0.067</string>
+					</dict>
+					<key>CornerRadius</key>
+					<real>4</real>
+					<key>Width</key>
+					<real>2</real>
+				</dict>
+			</dict>
+			<key>Text</key>
+			<dict>
+				<key>Text</key>
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf2639{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;}{\colortbl;\red255\green255\blue255;}\pard\tx560\pardirnatural\qc\f0\b\fs20 \cf1 Q-SYS Dante/AES67 Bridge\
+\f1\b0\fs16 Dante Network A/B | AES67 Network\
+Gigabit Network}</string>
+				<key>VerticalPad</key>
+				<integer>4</integer>
+			</dict>
+			<key>UserInfo</key>
+			<dict>
+				<key>product</key>
+				<string>Q-SYS Dante/AES67 Bridge</string>
+				<key>inputs</key>
+				<string>Dante Network A, Dante Network B, Gigabit Network</string>
+				<key>outputs</key>
+				<string>AES67 Network, Dante Network Out, Gigabit Network</string>
+				<key>category</key>
+				<string>Q-SYS QIO</string>
+			</dict>
+		</dict>
+
+		<!-- ═══════════════════════════════════════════════════ -->
+		<!-- Q-SYS AES3 Network Interface                       -->
+		<!-- Inputs (Left): 8x AES3 In, Network                 -->
+		<!-- Outputs (Right): 8x AES3 Out, Network              -->
+		<!-- ═══════════════════════════════════════════════════ -->
+		<dict>
+			<key>Bounds</key>
+			<string>{{36, 616}, {200, 120}}</string>
+			<key>Class</key>
+			<string>ShapedGraphic</string>
+			<key>ID</key>
+			<integer>14</integer>
+			<key>Magnets</key>
+			<array>
+				<!-- Inputs - Left side (8 AES3 + network) -->
+				<string>{-1, -0.778}</string>
+				<string>{-1, -0.556}</string>
+				<string>{-1, -0.333}</string>
+				<string>{-1, -0.111}</string>
+				<string>{-1, 0.111}</string>
+				<string>{-1, 0.333}</string>
+				<string>{-1, 0.556}</string>
+				<string>{-1, 0.778}</string>
+				<!-- Outputs - Right side (8 AES3 + network) -->
+				<string>{1, -0.778}</string>
+				<string>{1, -0.556}</string>
+				<string>{1, -0.333}</string>
+				<string>{1, -0.111}</string>
+				<string>{1, 0.111}</string>
+				<string>{1, 0.333}</string>
+				<string>{1, 0.556}</string>
+				<string>{1, 0.778}</string>
+				<!-- Network top/bottom -->
+				<string>{-0.5, -1}</string>
+				<string>{0.5, -1}</string>
+				<string>{0, 1}</string>
+			</array>
+			<key>Shape</key>
+			<string>Rectangle</string>
+			<key>Style</key>
+			<dict>
+				<key>fill</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.322</string>
+						<key>g</key>
+						<string>0.584</string>
+						<key>r</key>
+						<string>0.133</string>
+					</dict>
+					<key>Draws</key>
+					<string>YES</string>
+					<key>FillType</key>
+					<integer>0</integer>
+				</dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+				<key>stroke</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.2</string>
+						<key>g</key>
+						<string>0.4</string>
+						<key>r</key>
+						<string>0.067</string>
+					</dict>
+					<key>CornerRadius</key>
+					<real>4</real>
+					<key>Width</key>
+					<real>2</real>
+				</dict>
+			</dict>
+			<key>Text</key>
+			<dict>
+				<key>Text</key>
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf2639{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;}{\colortbl;\red255\green255\blue255;}\pard\tx560\pardirnatural\qc\f0\b\fs20 \cf1 Q-SYS AES3 Network Interface\
+\f1\b0\fs16 8x AES3 In (XLR) | 8x AES3 Out (XLR)\
+Dante/AES67 | Gigabit Network}</string>
+				<key>VerticalPad</key>
+				<integer>4</integer>
+			</dict>
+			<key>UserInfo</key>
+			<dict>
+				<key>product</key>
+				<string>Q-SYS AES3 Network Interface</string>
+				<key>inputs</key>
+				<string>8x AES3 XLR In, Dante/AES67, Gigabit Network</string>
+				<key>outputs</key>
+				<string>8x AES3 XLR Out, Dante/AES67, Gigabit Network</string>
+				<key>category</key>
+				<string>Q-SYS QIO</string>
+			</dict>
+		</dict>
+
+		<!-- ═══════════════════════════════════════════════════ -->
+		<!-- Q-SYS Network Amplifier (NL-C4-x40W)              -->
+		<!-- Inputs (Left): 4ch from Dante/AES67               -->
+		<!-- Outputs (Right): 4x Speaker Outputs               -->
+		<!-- ═══════════════════════════════════════════════════ -->
+		<dict>
+			<key>Bounds</key>
+			<string>{{36, 776}, {200, 100}}</string>
+			<key>Class</key>
+			<string>ShapedGraphic</string>
+			<key>ID</key>
+			<integer>15</integer>
+			<key>Magnets</key>
+			<array>
+				<!-- Inputs - Left side (Dante, AES67, GPIO, Network) -->
+				<string>{-1, -0.6}</string>
+				<string>{-1, -0.2}</string>
+				<string>{-1, 0.2}</string>
+				<string>{-1, 0.6}</string>
+				<!-- Outputs - Right side (4x speaker) -->
+				<string>{1, -0.6}</string>
+				<string>{1, -0.2}</string>
+				<string>{1, 0.2}</string>
+				<string>{1, 0.6}</string>
+				<!-- Top/Bottom -->
+				<string>{0, -1}</string>
+				<string>{0, 1}</string>
+			</array>
+			<key>Shape</key>
+			<string>Rectangle</string>
+			<key>Style</key>
+			<dict>
+				<key>fill</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.322</string>
+						<key>g</key>
+						<string>0.584</string>
+						<key>r</key>
+						<string>0.133</string>
+					</dict>
+					<key>Draws</key>
+					<string>YES</string>
+					<key>FillType</key>
+					<integer>0</integer>
+				</dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+				<key>stroke</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.2</string>
+						<key>g</key>
+						<string>0.4</string>
+						<key>r</key>
+						<string>0.067</string>
+					</dict>
+					<key>CornerRadius</key>
+					<real>4</real>
+					<key>Width</key>
+					<real>2</real>
+				</dict>
+			</dict>
+			<key>Text</key>
+			<dict>
+				<key>Text</key>
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf2639{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;}{\colortbl;\red255\green255\blue255;}\pard\tx560\pardirnatural\qc\f0\b\fs20 \cf1 Q-SYS Network Amplifier 4x40W\
+\f1\b0\fs16 Dante/AES67 In | 4x Speaker Out\
+GPIO | Gigabit Network}</string>
+				<key>VerticalPad</key>
+				<integer>4</integer>
+			</dict>
+			<key>UserInfo</key>
+			<dict>
+				<key>product</key>
+				<string>Q-SYS Network Amplifier 4x40W (NL-C4-x40W)</string>
+				<key>inputs</key>
+				<string>Dante/AES67, GPIO, Gigabit Network</string>
+				<key>outputs</key>
+				<string>4x Speaker Out (40W/ch), Dante/AES67, Gigabit Network</string>
+				<key>category</key>
+				<string>Q-SYS QIO</string>
+			</dict>
+		</dict>
+
+	</array>
+	<key>ImageCounter</key>
+	<integer>1</integer>
+	<key>LeftPadding</key>
+	<real>36</real>
+	<key>Orientation</key>
+	<integer>2</integer>
+	<key>ReadOnly</key>
+	<string>NO</string>
+	<key>RowAlign</key>
+	<integer>1</integer>
+	<key>RowSpacing</key>
+	<real>36</real>
+	<key>SheetTitle</key>
+	<string>Q-SYS QIO Devices</string>
+	<key>TopPadding</key>
+	<real>36</real>
+	<key>Type</key>
+	<string>stencil</string>
+	<key>UserInfo</key>
+	<dict>
+		<key>description</key>
+		<string>Q-SYS I/O Devices: I/O Frame 8x8, 16x16, USB Bridge, Dante/AES67 Bridge, AES3 Interface, Network Amplifier</string>
+		<key>vendor</key>
+		<string>QSC / Q-SYS</string>
+		<key>version</key>
+		<string>1.0</string>
+	</dict>
+	<key>Version</key>
+	<integer>2</integer>
+	<key>WindowInfo</key>
+	<dict>
+		<key>CurrentSheet</key>
+		<integer>0</integer>
+		<key>Frame</key>
+		<string>{{0, 0}, {1440, 900}}</string>
+		<key>ListView</key>
+		<true/>
+		<key>Zoom</key>
+		<real>1</real>
+	</dict>
+</dict>
+</plist>

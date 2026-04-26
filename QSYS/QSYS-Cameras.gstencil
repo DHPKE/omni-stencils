@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CanvasColor</key>
+	<dict>
+		<key>w</key>
+		<string>1</string>
+	</dict>
+	<key>ColumnAlign</key>
+	<integer>1</integer>
+	<key>ColumnSpacing</key>
+	<real>36</real>
+	<key>CreationDate</key>
+	<string>2026-04-26 00:00:00 +0000</string>
+	<key>Creator</key>
+	<string>DHPKE OmniGraffle Stencils</string>
+	<key>GraphDocumentVersion</key>
+	<integer>8</integer>
+	<key>GraphicsList</key>
+	<array>
+
+		<!-- ═══════════════════════════════════════════════════ -->
+		<!-- Q-SYS PTZ-IP Camera 20x                            -->
+		<!-- Inputs (Left): Network (control/power PoE+)        -->
+		<!-- Outputs (Right): HDMI, Network (video stream)      -->
+		<!-- ═══════════════════════════════════════════════════ -->
+		<dict>
+			<key>Bounds</key>
+			<string>{{36, 36}, {200, 90}}</string>
+			<key>Class</key>
+			<string>ShapedGraphic</string>
+			<key>ID</key>
+			<integer>20</integer>
+			<key>Magnets</key>
+			<array>
+				<!-- Input - Left side (PoE+ Network, RS-232 Control, VISCA) -->
+				<string>{-1, -0.5}</string>
+				<string>{-1, 0}</string>
+				<string>{-1, 0.5}</string>
+				<!-- Output - Right side (HDMI, 3G-SDI, Network Stream) -->
+				<string>{1, -0.5}</string>
+				<string>{1, 0}</string>
+				<string>{1, 0.5}</string>
+				<!-- Top/Bottom -->
+				<string>{0, -1}</string>
+				<string>{0, 1}</string>
+			</array>
+			<key>Shape</key>
+			<string>Rectangle</string>
+			<key>Style</key>
+			<dict>
+				<key>fill</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.2</string>
+						<key>g</key>
+						<string>0.2</string>
+						<key>r</key>
+						<string>0.2</string>
+					</dict>
+					<key>Draws</key>
+					<string>YES</string>
+					<key>FillType</key>
+					<integer>0</integer>
+				</dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+				<key>stroke</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.8</string>
+						<key>g</key>
+						<string>0.6</string>
+						<key>r</key>
+						<string>0</string>
+					</dict>
+					<key>CornerRadius</key>
+					<real>8</real>
+					<key>Width</key>
+					<real>2</real>
+				</dict>
+			</dict>
+			<key>Text</key>
+			<dict>
+				<key>Text</key>
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf2639{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;}{\colortbl;\red255\green255\blue255;}\pard\tx560\pardirnatural\qc\f0\b\fs20 \cf1 Q-SYS PTZ-IP Camera 20x\
+\f1\b0\fs16 PoE+ / RS-232 In | HDMI + 3G-SDI Out\
+Network Stream | VISCA over IP}</string>
+				<key>VerticalPad</key>
+				<integer>4</integer>
+			</dict>
+			<key>UserInfo</key>
+			<dict>
+				<key>product</key>
+				<string>Q-SYS PTZ-IP Camera 20x</string>
+				<key>inputs</key>
+				<string>PoE+ Gigabit Network, RS-232 Control, VISCA over IP</string>
+				<key>outputs</key>
+				<string>HDMI 1.4, 3G-SDI, Network H.264/H.265 Stream</string>
+				<key>zoom</key>
+				<string>20x Optical</string>
+				<key>category</key>
+				<string>Q-SYS Camera</string>
+			</dict>
+		</dict>
+
+		<!-- ═══════════════════════════════════════════════════ -->
+		<!-- Q-SYS PTZ-IP Camera 12x                            -->
+		<!-- ═══════════════════════════════════════════════════ -->
+		<dict>
+			<key>Bounds</key>
+			<string>{{36, 166}, {200, 90}}</string>
+			<key>Class</key>
+			<string>ShapedGraphic</string>
+			<key>ID</key>
+			<integer>21</integer>
+			<key>Magnets</key>
+			<array>
+				<string>{-1, -0.5}</string>
+				<string>{-1, 0}</string>
+				<string>{-1, 0.5}</string>
+				<string>{1, -0.5}</string>
+				<string>{1, 0}</string>
+				<string>{1, 0.5}</string>
+				<string>{0, -1}</string>
+				<string>{0, 1}</string>
+			</array>
+			<key>Shape</key>
+			<string>Rectangle</string>
+			<key>Style</key>
+			<dict>
+				<key>fill</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.2</string>
+						<key>g</key>
+						<string>0.2</string>
+						<key>r</key>
+						<string>0.2</string>
+					</dict>
+					<key>Draws</key>
+					<string>YES</string>
+					<key>FillType</key>
+					<integer>0</integer>
+				</dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+				<key>stroke</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.8</string>
+						<key>g</key>
+						<string>0.6</string>
+						<key>r</key>
+						<string>0</string>
+					</dict>
+					<key>CornerRadius</key>
+					<real>8</real>
+					<key>Width</key>
+					<real>2</real>
+				</dict>
+			</dict>
+			<key>Text</key>
+			<dict>
+				<key>Text</key>
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf2639{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;}{\colortbl;\red255\green255\blue255;}\pard\tx560\pardirnatural\qc\f0\b\fs20 \cf1 Q-SYS PTZ-IP Camera 12x\
+\f1\b0\fs16 PoE+ / RS-232 In | HDMI + 3G-SDI Out\
+Network Stream | VISCA over IP}</string>
+				<key>VerticalPad</key>
+				<integer>4</integer>
+			</dict>
+			<key>UserInfo</key>
+			<dict>
+				<key>product</key>
+				<string>Q-SYS PTZ-IP Camera 12x</string>
+				<key>inputs</key>
+				<string>PoE+ Gigabit Network, RS-232 Control, VISCA over IP</string>
+				<key>outputs</key>
+				<string>HDMI 1.4, 3G-SDI, Network H.264/H.265 Stream</string>
+				<key>zoom</key>
+				<string>12x Optical</string>
+				<key>category</key>
+				<string>Q-SYS Camera</string>
+			</dict>
+		</dict>
+
+		<!-- ═══════════════════════════════════════════════════ -->
+		<!-- Q-SYS 5K PTZ Camera                               -->
+		<!-- UHD 5K resolution, advanced PTZ                    -->
+		<!-- ═══════════════════════════════════════════════════ -->
+		<dict>
+			<key>Bounds</key>
+			<string>{{36, 296}, {200, 90}}</string>
+			<key>Class</key>
+			<string>ShapedGraphic</string>
+			<key>ID</key>
+			<integer>22</integer>
+			<key>Magnets</key>
+			<array>
+				<string>{-1, -0.5}</string>
+				<string>{-1, 0}</string>
+				<string>{-1, 0.5}</string>
+				<string>{1, -0.5}</string>
+				<string>{1, 0}</string>
+				<string>{1, 0.5}</string>
+				<string>{0, -1}</string>
+				<string>{0, 1}</string>
+			</array>
+			<key>Shape</key>
+			<string>Rectangle</string>
+			<key>Style</key>
+			<dict>
+				<key>fill</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.2</string>
+						<key>g</key>
+						<string>0.2</string>
+						<key>r</key>
+						<string>0.2</string>
+					</dict>
+					<key>Draws</key>
+					<string>YES</string>
+					<key>FillType</key>
+					<integer>0</integer>
+				</dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+				<key>stroke</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.8</string>
+						<key>g</key>
+						<string>0.6</string>
+						<key>r</key>
+						<string>0</string>
+					</dict>
+					<key>CornerRadius</key>
+					<real>8</real>
+					<key>Width</key>
+					<real>2</real>
+				</dict>
+			</dict>
+			<key>Text</key>
+			<dict>
+				<key>Text</key>
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf2639{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;}{\colortbl;\red255\green255\blue255;}\pard\tx560\pardirnatural\qc\f0\b\fs20 \cf1 Q-SYS 5K PTZ Camera\
+\f1\b0\fs16 PoE+ / RS-232 In | HDMI 2.0 + USB Out\
+Network H.265 Stream | VISCA over IP}</string>
+				<key>VerticalPad</key>
+				<integer>4</integer>
+			</dict>
+			<key>UserInfo</key>
+			<dict>
+				<key>product</key>
+				<string>Q-SYS 5K PTZ Camera</string>
+				<key>inputs</key>
+				<string>PoE+ Gigabit Network, RS-232 Control, VISCA over IP</string>
+				<key>outputs</key>
+				<string>HDMI 2.0, USB 3.0, Network H.265 5K Stream</string>
+				<key>resolution</key>
+				<string>5120x2880 @ 30fps</string>
+				<key>category</key>
+				<string>Q-SYS Camera</string>
+			</dict>
+		</dict>
+
+		<!-- ═══════════════════════════════════════════════════ -->
+		<!-- Q-SYS USB Camera (Ceiling/Table)                   -->
+		<!-- Compact USB conference camera                      -->
+		<!-- ═══════════════════════════════════════════════════ -->
+		<dict>
+			<key>Bounds</key>
+			<string>{{36, 426}, {200, 80}}</string>
+			<key>Class</key>
+			<string>ShapedGraphic</string>
+			<key>ID</key>
+			<integer>23</integer>
+			<key>Magnets</key>
+			<array>
+				<!-- Input: USB, PoE -->
+				<string>{-1, -0.333}</string>
+				<string>{-1, 0.333}</string>
+				<!-- Output: USB Video, Network -->
+				<string>{1, -0.333}</string>
+				<string>{1, 0.333}</string>
+				<string>{0, -1}</string>
+				<string>{0, 1}</string>
+			</array>
+			<key>Shape</key>
+			<string>Rectangle</string>
+			<key>Style</key>
+			<dict>
+				<key>fill</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.2</string>
+						<key>g</key>
+						<string>0.2</string>
+						<key>r</key>
+						<string>0.2</string>
+					</dict>
+					<key>Draws</key>
+					<string>YES</string>
+					<key>FillType</key>
+					<integer>0</integer>
+				</dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+				<key>stroke</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.8</string>
+						<key>g</key>
+						<string>0.6</string>
+						<key>r</key>
+						<string>0</string>
+					</dict>
+					<key>CornerRadius</key>
+					<real>8</real>
+					<key>Width</key>
+					<real>2</real>
+				</dict>
+			</dict>
+			<key>Text</key>
+			<dict>
+				<key>Text</key>
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf2639{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;}{\colortbl;\red255\green255\blue255;}\pard\tx560\pardirnatural\qc\f0\b\fs20 \cf1 Q-SYS USB Camera\
+\f1\b0\fs16 USB 3.0 / PoE | USB Video Out\
+1080p60 | UVC Compliant}</string>
+				<key>VerticalPad</key>
+				<integer>4</integer>
+			</dict>
+			<key>UserInfo</key>
+			<dict>
+				<key>product</key>
+				<string>Q-SYS USB Camera</string>
+				<key>inputs</key>
+				<string>USB 3.0, PoE Network</string>
+				<key>outputs</key>
+				<string>USB Video (UVC), Network Stream</string>
+				<key>resolution</key>
+				<string>1080p60</string>
+				<key>category</key>
+				<string>Q-SYS Camera</string>
+			</dict>
+		</dict>
+
+	</array>
+	<key>ImageCounter</key>
+	<integer>1</integer>
+	<key>LeftPadding</key>
+	<real>36</real>
+	<key>Orientation</key>
+	<integer>2</integer>
+	<key>ReadOnly</key>
+	<string>NO</string>
+	<key>RowAlign</key>
+	<integer>1</integer>
+	<key>RowSpacing</key>
+	<real>36</real>
+	<key>SheetTitle</key>
+	<string>Q-SYS Cameras</string>
+	<key>TopPadding</key>
+	<real>36</real>
+	<key>Type</key>
+	<string>stencil</string>
+	<key>UserInfo</key>
+	<dict>
+		<key>description</key>
+		<string>Q-SYS Cameras: PTZ-IP 20x, PTZ-IP 12x, 5K PTZ, USB Camera</string>
+		<key>vendor</key>
+		<string>QSC / Q-SYS</string>
+		<key>version</key>
+		<string>1.0</string>
+	</dict>
+	<key>Version</key>
+	<integer>2</integer>
+	<key>WindowInfo</key>
+	<dict>
+		<key>CurrentSheet</key>
+		<integer>0</integer>
+		<key>Frame</key>
+		<string>{{0, 0}, {1440, 900}}</string>
+		<key>ListView</key>
+		<true/>
+		<key>Zoom</key>
+		<real>1</real>
+	</dict>
+</dict>
+</plist>

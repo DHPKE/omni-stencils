@@ -1,0 +1,709 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CanvasColor</key>
+	<dict>
+		<key>w</key>
+		<string>1</string>
+	</dict>
+	<key>ColumnAlign</key>
+	<integer>1</integer>
+	<key>ColumnSpacing</key>
+	<real>36</real>
+	<key>CreationDate</key>
+	<string>2026-04-26 00:00:00 +0000</string>
+	<key>Creator</key>
+	<string>DHPKE OmniGraffle Stencils</string>
+	<key>GraphDocumentVersion</key>
+	<integer>8</integer>
+	<key>GraphicsList</key>
+	<array>
+
+		<!-- ═══════════════════════════════════════════════════ -->
+		<!-- Q-SYS Core Nano                                     -->
+		<!-- Inputs (Left): 2x Mic/Line, 1x USB, 1x Network     -->
+		<!-- Outputs (Right): 2x Line Out, 1x USB, 1x Network   -->
+		<!-- ═══════════════════════════════════════════════════ -->
+		<dict>
+			<key>Bounds</key>
+			<string>{{36, 36}, {200, 80}}</string>
+			<key>Class</key>
+			<string>ShapedGraphic</string>
+			<key>ID</key>
+			<integer>1</integer>
+			<key>Magnets</key>
+			<array>
+				<!-- Inputs - Left side -->
+				<string>{-1, -0.6}</string>
+				<string>{-1, -0.2}</string>
+				<string>{-1, 0.2}</string>
+				<string>{-1, 0.6}</string>
+				<!-- Outputs - Right side -->
+				<string>{1, -0.6}</string>
+				<string>{1, -0.2}</string>
+				<string>{1, 0.2}</string>
+				<string>{1, 0.6}</string>
+				<!-- Top/Bottom -->
+				<string>{0, -1}</string>
+				<string>{0, 1}</string>
+			</array>
+			<key>Shape</key>
+			<string>Rectangle</string>
+			<key>Style</key>
+			<dict>
+				<key>fill</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.651</string>
+						<key>g</key>
+						<string>0.337</string>
+						<key>r</key>
+						<string>0.118</string>
+					</dict>
+					<key>Draws</key>
+					<string>YES</string>
+					<key>FillType</key>
+					<integer>0</integer>
+				</dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+				<key>stroke</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.451</string>
+						<key>g</key>
+						<string>0.2</string>
+						<key>r</key>
+						<string>0.067</string>
+					</dict>
+					<key>CornerRadius</key>
+					<real>4</real>
+					<key>Width</key>
+					<real>2</real>
+				</dict>
+			</dict>
+			<key>Text</key>
+			<dict>
+				<key>Text</key>
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf2639{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;}{\colortbl;\red255\green255\blue255;}\pard\tx560\pardirnatural\qc\f0\b\fs20 \cf1 Q-SYS Core Nano\
+\f1\b0\fs16 2ch Mic/Line In | 2ch Line Out\
+USB | Network}</string>
+				<key>VerticalPad</key>
+				<integer>4</integer>
+			</dict>
+			<key>UserInfo</key>
+			<dict>
+				<key>product</key>
+				<string>Q-SYS Core Nano</string>
+				<key>inputs</key>
+				<string>2x Mic/Line In, 1x USB, 1x Gigabit Network</string>
+				<key>outputs</key>
+				<string>2x Line Out, 1x USB, 1x Gigabit Network</string>
+				<key>category</key>
+				<string>Q-SYS Core</string>
+			</dict>
+		</dict>
+
+		<!-- ═══════════════════════════════════════════════════ -->
+		<!-- Q-SYS Core 110f                                     -->
+		<!-- Inputs (Left): 4x Mic/Line, 2x USB, GPIO, Network  -->
+		<!-- Outputs (Right): 4x Line Out, 2x USB, GPIO, Network-->
+		<!-- ═══════════════════════════════════════════════════ -->
+		<dict>
+			<key>Bounds</key>
+			<string>{{36, 156}, {200, 100}}</string>
+			<key>Class</key>
+			<string>ShapedGraphic</string>
+			<key>ID</key>
+			<integer>2</integer>
+			<key>Magnets</key>
+			<array>
+				<!-- Inputs - Left side (4 analog, 2 USB, 1 GPIO, 1 Network = 8) -->
+				<string>{-1, -0.75}</string>
+				<string>{-1, -0.5}</string>
+				<string>{-1, -0.25}</string>
+				<string>{-1, 0}</string>
+				<string>{-1, 0.25}</string>
+				<string>{-1, 0.5}</string>
+				<string>{-1, 0.75}</string>
+				<!-- Outputs - Right side -->
+				<string>{1, -0.75}</string>
+				<string>{1, -0.5}</string>
+				<string>{1, -0.25}</string>
+				<string>{1, 0}</string>
+				<string>{1, 0.25}</string>
+				<string>{1, 0.5}</string>
+				<string>{1, 0.75}</string>
+				<!-- Top/Bottom -->
+				<string>{0, -1}</string>
+				<string>{0, 1}</string>
+			</array>
+			<key>Shape</key>
+			<string>Rectangle</string>
+			<key>Style</key>
+			<dict>
+				<key>fill</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.651</string>
+						<key>g</key>
+						<string>0.337</string>
+						<key>r</key>
+						<string>0.118</string>
+					</dict>
+					<key>Draws</key>
+					<string>YES</string>
+					<key>FillType</key>
+					<integer>0</integer>
+				</dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+				<key>stroke</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.451</string>
+						<key>g</key>
+						<string>0.2</string>
+						<key>r</key>
+						<string>0.067</string>
+					</dict>
+					<key>CornerRadius</key>
+					<real>4</real>
+					<key>Width</key>
+					<real>2</real>
+				</dict>
+			</dict>
+			<key>Text</key>
+			<dict>
+				<key>Text</key>
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf2639{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;}{\colortbl;\red255\green255\blue255;}\pard\tx560\pardirnatural\qc\f0\b\fs20 \cf1 Q-SYS Core 110f\
+\f1\b0\fs16 4ch Mic/Line In | 4ch Line Out\
+4x USB | GPIO | Network}</string>
+				<key>VerticalPad</key>
+				<integer>4</integer>
+			</dict>
+			<key>UserInfo</key>
+			<dict>
+				<key>product</key>
+				<string>Q-SYS Core 110f</string>
+				<key>inputs</key>
+				<string>4x Mic/Line In, 4x USB, 1x GPIO, 2x Gigabit Network</string>
+				<key>outputs</key>
+				<string>4x Line Out, 4x USB, 1x GPIO, 2x Gigabit Network</string>
+				<key>category</key>
+				<string>Q-SYS Core</string>
+			</dict>
+		</dict>
+
+		<!-- ═══════════════════════════════════════════════════ -->
+		<!-- Q-SYS Core 510i                                     -->
+		<!-- Inputs: 8x Mic/Line, 4x AES, 4x USB, Dante, Net    -->
+		<!-- Outputs: 8x Line, 4x AES, 4x USB, Dante, Net       -->
+		<!-- ═══════════════════════════════════════════════════ -->
+		<dict>
+			<key>Bounds</key>
+			<string>{{36, 296}, {200, 120}}</string>
+			<key>Class</key>
+			<string>ShapedGraphic</string>
+			<key>ID</key>
+			<integer>3</integer>
+			<key>Magnets</key>
+			<array>
+				<!-- Inputs - Left side (8 analog, 4 AES, 4 USB, 1 Dante, 1 GPIO, 1 Network = 19) -->
+				<string>{-1, -0.857}</string>
+				<string>{-1, -0.714}</string>
+				<string>{-1, -0.571}</string>
+				<string>{-1, -0.429}</string>
+				<string>{-1, -0.286}</string>
+				<string>{-1, -0.143}</string>
+				<string>{-1, 0}</string>
+				<string>{-1, 0.143}</string>
+				<string>{-1, 0.286}</string>
+				<string>{-1, 0.429}</string>
+				<string>{-1, 0.571}</string>
+				<string>{-1, 0.714}</string>
+				<string>{-1, 0.857}</string>
+				<!-- Outputs - Right side -->
+				<string>{1, -0.857}</string>
+				<string>{1, -0.714}</string>
+				<string>{1, -0.571}</string>
+				<string>{1, -0.429}</string>
+				<string>{1, -0.286}</string>
+				<string>{1, -0.143}</string>
+				<string>{1, 0}</string>
+				<string>{1, 0.143}</string>
+				<string>{1, 0.286}</string>
+				<string>{1, 0.429}</string>
+				<string>{1, 0.571}</string>
+				<string>{1, 0.714}</string>
+				<string>{1, 0.857}</string>
+				<!-- Top/Bottom -->
+				<string>{0, -1}</string>
+				<string>{0, 1}</string>
+			</array>
+			<key>Shape</key>
+			<string>Rectangle</string>
+			<key>Style</key>
+			<dict>
+				<key>fill</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.651</string>
+						<key>g</key>
+						<string>0.337</string>
+						<key>r</key>
+						<string>0.118</string>
+					</dict>
+					<key>Draws</key>
+					<string>YES</string>
+					<key>FillType</key>
+					<integer>0</integer>
+				</dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+				<key>stroke</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.451</string>
+						<key>g</key>
+						<string>0.2</string>
+						<key>r</key>
+						<string>0.067</string>
+					</dict>
+					<key>CornerRadius</key>
+					<real>4</real>
+					<key>Width</key>
+					<real>2</real>
+				</dict>
+			</dict>
+			<key>Text</key>
+			<dict>
+				<key>Text</key>
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf2639{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;}{\colortbl;\red255\green255\blue255;}\pard\tx560\pardirnatural\qc\f0\b\fs20 \cf1 Q-SYS Core 510i\
+\f1\b0\fs16 8ch Mic/Line In | 8ch Line Out\
+4x AES3 | 4x USB | Dante/AES67 | GPIO | Network}</string>
+				<key>VerticalPad</key>
+				<integer>4</integer>
+			</dict>
+			<key>UserInfo</key>
+			<dict>
+				<key>product</key>
+				<string>Q-SYS Core 510i</string>
+				<key>inputs</key>
+				<string>8x Mic/Line In, 4x AES3 In, 4x USB, Dante/AES67, GPIO, 2x Gigabit Network</string>
+				<key>outputs</key>
+				<string>8x Line Out, 4x AES3 Out, 4x USB, Dante/AES67, GPIO, 2x Gigabit Network</string>
+				<key>category</key>
+				<string>Q-SYS Core</string>
+			</dict>
+		</dict>
+
+		<!-- ═══════════════════════════════════════════════════ -->
+		<!-- Q-SYS Core 610                                      -->
+		<!-- Inputs: 12x Mic/Line, 8x AES, 8x USB, Dante, Net   -->
+		<!-- Outputs: 12x Line, 8x AES, 8x USB, Dante, Net      -->
+		<!-- ═══════════════════════════════════════════════════ -->
+		<dict>
+			<key>Bounds</key>
+			<string>{{36, 456}, {200, 140}}</string>
+			<key>Class</key>
+			<string>ShapedGraphic</string>
+			<key>ID</key>
+			<integer>4</integer>
+			<key>Magnets</key>
+			<array>
+				<!-- Inputs - Left side -->
+				<string>{-1, -0.923}</string>
+				<string>{-1, -0.769}</string>
+				<string>{-1, -0.615}</string>
+				<string>{-1, -0.462}</string>
+				<string>{-1, -0.308}</string>
+				<string>{-1, -0.154}</string>
+				<string>{-1, 0}</string>
+				<string>{-1, 0.154}</string>
+				<string>{-1, 0.308}</string>
+				<string>{-1, 0.462}</string>
+				<string>{-1, 0.615}</string>
+				<string>{-1, 0.769}</string>
+				<string>{-1, 0.923}</string>
+				<!-- Outputs - Right side -->
+				<string>{1, -0.923}</string>
+				<string>{1, -0.769}</string>
+				<string>{1, -0.615}</string>
+				<string>{1, -0.462}</string>
+				<string>{1, -0.308}</string>
+				<string>{1, -0.154}</string>
+				<string>{1, 0}</string>
+				<string>{1, 0.154}</string>
+				<string>{1, 0.308}</string>
+				<string>{1, 0.462}</string>
+				<string>{1, 0.615}</string>
+				<string>{1, 0.769}</string>
+				<string>{1, 0.923}</string>
+				<!-- Top/Bottom -->
+				<string>{0, -1}</string>
+				<string>{0, 1}</string>
+			</array>
+			<key>Shape</key>
+			<string>Rectangle</string>
+			<key>Style</key>
+			<dict>
+				<key>fill</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.651</string>
+						<key>g</key>
+						<string>0.337</string>
+						<key>r</key>
+						<string>0.118</string>
+					</dict>
+					<key>Draws</key>
+					<string>YES</string>
+					<key>FillType</key>
+					<integer>0</integer>
+				</dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+				<key>stroke</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.451</string>
+						<key>g</key>
+						<string>0.2</string>
+						<key>r</key>
+						<string>0.067</string>
+					</dict>
+					<key>CornerRadius</key>
+					<real>4</real>
+					<key>Width</key>
+					<real>2</real>
+				</dict>
+			</dict>
+			<key>Text</key>
+			<dict>
+				<key>Text</key>
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf2639{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;}{\colortbl;\red255\green255\blue255;}\pard\tx560\pardirnatural\qc\f0\b\fs20 \cf1 Q-SYS Core 610\
+\f1\b0\fs16 12ch Mic/Line In | 12ch Line Out\
+8x AES3 | 8x USB | Dante/AES67 | GPIO | Network}</string>
+				<key>VerticalPad</key>
+				<integer>4</integer>
+			</dict>
+			<key>UserInfo</key>
+			<dict>
+				<key>product</key>
+				<string>Q-SYS Core 610</string>
+				<key>inputs</key>
+				<string>12x Mic/Line In, 8x AES3 In, 8x USB, Dante/AES67, GPIO, 2x Gigabit Network</string>
+				<key>outputs</key>
+				<string>12x Line Out, 8x AES3 Out, 8x USB, Dante/AES67, GPIO, 2x Gigabit Network</string>
+				<key>category</key>
+				<string>Q-SYS Core</string>
+			</dict>
+		</dict>
+
+		<!-- ═══════════════════════════════════════════════════ -->
+		<!-- Q-SYS Core 8 Flex                                   -->
+		<!-- Inputs: 8x Mic/Line, Dante/AES67, USB, Network      -->
+		<!-- Outputs: 8x Line, Dante/AES67, USB, Network         -->
+		<!-- ═══════════════════════════════════════════════════ -->
+		<dict>
+			<key>Bounds</key>
+			<string>{{36, 636}, {200, 120}}</string>
+			<key>Class</key>
+			<string>ShapedGraphic</string>
+			<key>ID</key>
+			<integer>5</integer>
+			<key>Magnets</key>
+			<array>
+				<!-- Inputs - Left side (8 analog, 1 Dante, 2 USB, 1 GPIO, 1 Network) -->
+				<string>{-1, -0.857}</string>
+				<string>{-1, -0.714}</string>
+				<string>{-1, -0.571}</string>
+				<string>{-1, -0.429}</string>
+				<string>{-1, -0.286}</string>
+				<string>{-1, -0.143}</string>
+				<string>{-1, 0}</string>
+				<string>{-1, 0.143}</string>
+				<string>{-1, 0.286}</string>
+				<string>{-1, 0.429}</string>
+				<string>{-1, 0.571}</string>
+				<string>{-1, 0.714}</string>
+				<string>{-1, 0.857}</string>
+				<!-- Outputs - Right side -->
+				<string>{1, -0.857}</string>
+				<string>{1, -0.714}</string>
+				<string>{1, -0.571}</string>
+				<string>{1, -0.429}</string>
+				<string>{1, -0.286}</string>
+				<string>{1, -0.143}</string>
+				<string>{1, 0}</string>
+				<string>{1, 0.143}</string>
+				<string>{1, 0.286}</string>
+				<string>{1, 0.429}</string>
+				<string>{1, 0.571}</string>
+				<string>{1, 0.714}</string>
+				<string>{1, 0.857}</string>
+				<!-- Top/Bottom -->
+				<string>{0, -1}</string>
+				<string>{0, 1}</string>
+			</array>
+			<key>Shape</key>
+			<string>Rectangle</string>
+			<key>Style</key>
+			<dict>
+				<key>fill</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.651</string>
+						<key>g</key>
+						<string>0.337</string>
+						<key>r</key>
+						<string>0.118</string>
+					</dict>
+					<key>Draws</key>
+					<string>YES</string>
+					<key>FillType</key>
+					<integer>0</integer>
+				</dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+				<key>stroke</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.451</string>
+						<key>g</key>
+						<string>0.2</string>
+						<key>r</key>
+						<string>0.067</string>
+					</dict>
+					<key>CornerRadius</key>
+					<real>4</real>
+					<key>Width</key>
+					<real>2</real>
+				</dict>
+			</dict>
+			<key>Text</key>
+			<dict>
+				<key>Text</key>
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf2639{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;}{\colortbl;\red255\green255\blue255;}\pard\tx560\pardirnatural\qc\f0\b\fs20 \cf1 Q-SYS Core 8 Flex\
+\f1\b0\fs16 8ch Mic/Line In | 8ch Line Out\
+Dante/AES67 | USB | GPIO | Network}</string>
+				<key>VerticalPad</key>
+				<integer>4</integer>
+			</dict>
+			<key>UserInfo</key>
+			<dict>
+				<key>product</key>
+				<string>Q-SYS Core 8 Flex</string>
+				<key>inputs</key>
+				<string>8x Mic/Line In, Dante/AES67, 2x USB, GPIO, 2x Gigabit Network</string>
+				<key>outputs</key>
+				<string>8x Line Out, Dante/AES67, 2x USB, GPIO, 2x Gigabit Network</string>
+				<key>category</key>
+				<string>Q-SYS Core</string>
+			</dict>
+		</dict>
+
+		<!-- ═══════════════════════════════════════════════════ -->
+		<!-- Q-SYS Core Prime                                    -->
+		<!-- Inputs: 32x Mic/Line, MADI, Dante/AES67, Network   -->
+		<!-- Outputs: 32x Line, MADI, Dante/AES67, Network      -->
+		<!-- ═══════════════════════════════════════════════════ -->
+		<dict>
+			<key>Bounds</key>
+			<string>{{36, 796}, {200, 160}}</string>
+			<key>Class</key>
+			<string>ShapedGraphic</string>
+			<key>ID</key>
+			<integer>6</integer>
+			<key>Magnets</key>
+			<array>
+				<!-- Inputs - Left side (16 distributed representing 32ch + network + MADI + Dante) -->
+				<string>{-1, -0.933}</string>
+				<string>{-1, -0.8}</string>
+				<string>{-1, -0.667}</string>
+				<string>{-1, -0.533}</string>
+				<string>{-1, -0.4}</string>
+				<string>{-1, -0.267}</string>
+				<string>{-1, -0.133}</string>
+				<string>{-1, 0}</string>
+				<string>{-1, 0.133}</string>
+				<string>{-1, 0.267}</string>
+				<string>{-1, 0.4}</string>
+				<string>{-1, 0.533}</string>
+				<string>{-1, 0.667}</string>
+				<string>{-1, 0.8}</string>
+				<string>{-1, 0.933}</string>
+				<!-- Outputs - Right side -->
+				<string>{1, -0.933}</string>
+				<string>{1, -0.8}</string>
+				<string>{1, -0.667}</string>
+				<string>{1, -0.533}</string>
+				<string>{1, -0.4}</string>
+				<string>{1, -0.267}</string>
+				<string>{1, -0.133}</string>
+				<string>{1, 0}</string>
+				<string>{1, 0.133}</string>
+				<string>{1, 0.267}</string>
+				<string>{1, 0.4}</string>
+				<string>{1, 0.533}</string>
+				<string>{1, 0.667}</string>
+				<string>{1, 0.8}</string>
+				<string>{1, 0.933}</string>
+				<!-- Top/Bottom -->
+				<string>{0, -1}</string>
+				<string>{0, 1}</string>
+			</array>
+			<key>Shape</key>
+			<string>Rectangle</string>
+			<key>Style</key>
+			<dict>
+				<key>fill</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.651</string>
+						<key>g</key>
+						<string>0.337</string>
+						<key>r</key>
+						<string>0.118</string>
+					</dict>
+					<key>Draws</key>
+					<string>YES</string>
+					<key>FillType</key>
+					<integer>0</integer>
+				</dict>
+				<key>shadow</key>
+				<dict>
+					<key>Draws</key>
+					<string>NO</string>
+				</dict>
+				<key>stroke</key>
+				<dict>
+					<key>Color</key>
+					<dict>
+						<key>b</key>
+						<string>0.451</string>
+						<key>g</key>
+						<string>0.2</string>
+						<key>r</key>
+						<string>0.067</string>
+					</dict>
+					<key>CornerRadius</key>
+					<real>4</real>
+					<key>Width</key>
+					<real>2</real>
+				</dict>
+			</dict>
+			<key>Text</key>
+			<dict>
+				<key>Text</key>
+				<string>{\rtf1\ansi\ansicpg1252\cocoartf2639{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;}{\colortbl;\red255\green255\blue255;}\pard\tx560\pardirnatural\qc\f0\b\fs20 \cf1 Q-SYS Core Prime\
+\f1\b0\fs16 32ch Mic/Line In | 32ch Line Out\
+MADI | Dante/AES67 | AES3 | GPIO | Dual Network}</string>
+				<key>VerticalPad</key>
+				<integer>4</integer>
+			</dict>
+			<key>UserInfo</key>
+			<dict>
+				<key>product</key>
+				<string>Q-SYS Core Prime</string>
+				<key>inputs</key>
+				<string>32x Mic/Line In, MADI In, Dante/AES67, AES3, GPIO, 2x Gigabit Network</string>
+				<key>outputs</key>
+				<string>32x Line Out, MADI Out, Dante/AES67, AES3, GPIO, 2x Gigabit Network</string>
+				<key>category</key>
+				<string>Q-SYS Core</string>
+			</dict>
+		</dict>
+
+	</array>
+	<key>ImageCounter</key>
+	<integer>1</integer>
+	<key>LeftPadding</key>
+	<real>36</real>
+	<key>Orientation</key>
+	<integer>2</integer>
+	<key>ReadOnly</key>
+	<string>NO</string>
+	<key>RowAlign</key>
+	<integer>1</integer>
+	<key>RowSpacing</key>
+	<real>36</real>
+	<key>SheetTitle</key>
+	<string>Q-SYS Cores</string>
+	<key>TopPadding</key>
+	<real>36</real>
+	<key>Type</key>
+	<string>stencil</string>
+	<key>UserInfo</key>
+	<dict>
+		<key>description</key>
+		<string>Q-SYS Processing Cores: Nano, 110f, 510i, 610, 8 Flex, Prime</string>
+		<key>vendor</key>
+		<string>QSC / Q-SYS</string>
+		<key>version</key>
+		<string>1.0</string>
+	</dict>
+	<key>Version</key>
+	<integer>2</integer>
+	<key>WindowInfo</key>
+	<dict>
+		<key>CurrentSheet</key>
+		<integer>0</integer>
+		<key>Frame</key>
+		<string>{{0, 0}, {1440, 900}}</string>
+		<key>ListView</key>
+		<true/>
+		<key>OutlineWidth</key>
+		<real>142</real>
+		<key>RightSidebar</key>
+		<false/>
+		<key>ShowRuler</key>
+		<true/>
+		<key>Sidebar</key>
+		<true/>
+		<key>SidebarWidth</key>
+		<real>120</real>
+		<key>Zoom</key>
+		<real>1</real>
+	</dict>
+</dict>
+</plist>
