@@ -271,37 +271,39 @@ function buildGraffle(ext='.gstencil'){
     }
   });
 
-  const shapes=[];
+  // In OmniGraffle GraphicsList: index 0 = FRONTMOST, last index = BACKMOST.
+  // Build three layers: front (labels+title), mid (port indicators), back (bands+body).
+  const front=[], mid=[], back=[];
   const blk={r:0,g:0,b:0};
-  const titleSz=Math.min(12,Math.max(7,Math.floor((DW-BW*2-16)/12)));
+  const titleSz=Math.min(13,Math.max(8,Math.floor(DW/22)));
 
-  // ── Body ──
-  shapes.push(mkShp(nid(),DX,DY,DW,DH,{
-    fillRgb:bodyRgb,strokeRgb:bordRgb,sw:2.5,
+  // ── Device title — floats in the top margin, always visible ──
+  front.push(mkShp(nid(),DX,DY,DW,TOP,{
+    noFill:true,noStroke:true,
     text:devName,textSz:titleSz,textBold:true,textRgb:textRgb,textAlign:'center',
-    mags:bMags,
+    fillRgb:blk,strokeRgb:blk,
   }));
 
   // ── Input ports (left side) ──
   ins.forEach((p,i)=>{
     const cy=DY+iYs[i];
     const pc=h2r(p.color);
-    const band=darken(pc,0.45);
+    const bd=darken(pc,0.42);
 
-    // Dark band inside body at left edge
-    shapes.push(mkShp(nid(),DX,cy-PH/2,BW,PH,{
-      fillRgb:band,strokeRgb:blk,noStroke:true,
-    }));
-    // SQUARE indicator — straddles left border (half in, half out) — THIS IS THE MAGNET
-    shapes.push(mkShp(nid(),DX-PS/2,cy-PS/2,PS,PS,{
-      shape:'Rectangle',fillRgb:pc,strokeRgb:blk,sw:0.75,
-      mags:['{-1,0}'],
-    }));
-    // Label text inside the band, to the right of the square
-    shapes.push(mkShp(nid(),DX+PS/2+3,cy-PH/2,BW-PS/2-6,PH,{
+    // Label — frontmost layer (index 0 territory)
+    front.push(mkShp(nid(),DX+PS/2+4,cy-PH/2,BW-PS/2-7,PH,{
       noFill:true,noStroke:true,
       text:p.name,textSz:8,textRgb:textRgb,textAlign:'left',
       fillRgb:blk,strokeRgb:blk,
+    }));
+    // Square indicator — mid layer, straddles left border
+    mid.push(mkShp(nid(),DX-PS/2,cy-PS/2,PS,PS,{
+      shape:'Rectangle',fillRgb:pc,strokeRgb:blk,sw:0.75,
+      mags:['{-1,0}'],
+    }));
+    // Dark band — back layer, sits on top of body fill
+    back.push(mkShp(nid(),DX,cy-PH/2,BW,PH,{
+      fillRgb:bd,strokeRgb:blk,noStroke:true,
     }));
   });
 
@@ -309,25 +311,33 @@ function buildGraffle(ext='.gstencil'){
   outs.forEach((p,i)=>{
     const cy=DY+oYs[i];
     const pc=h2r(p.color);
-    const band=darken(pc,0.45);
+    const bd=darken(pc,0.42);
 
-    // Dark band inside body at right edge
-    shapes.push(mkShp(nid(),DX+DW-BW,cy-PH/2,BW,PH,{
-      fillRgb:band,strokeRgb:blk,noStroke:true,
-    }));
-    // CIRCLE indicator — straddles right border — THIS IS THE MAGNET
-    shapes.push(mkShp(nid(),DX+DW-PS/2,cy-PS/2,PS,PS,{
-      shape:'Circle',fillRgb:pc,strokeRgb:blk,sw:0.75,
-      mags:['{1,0}'],
-    }));
-    // Label text inside the band, left of the circle
-    shapes.push(mkShp(nid(),DX+DW-BW,cy-PH/2,BW-PS/2-6,PH,{
+    // Label — frontmost layer
+    front.push(mkShp(nid(),DX+DW-BW,cy-PH/2,BW-PS/2-7,PH,{
       noFill:true,noStroke:true,
       text:p.name,textSz:8,textRgb:textRgb,textAlign:'right',
       fillRgb:blk,strokeRgb:blk,
     }));
+    // Circle indicator — mid layer, straddles right border
+    mid.push(mkShp(nid(),DX+DW-PS/2,cy-PS/2,PS,PS,{
+      shape:'Circle',fillRgb:pc,strokeRgb:blk,sw:0.75,
+      mags:['{1,0}'],
+    }));
+    // Dark band — back layer
+    back.push(mkShp(nid(),DX+DW-BW,cy-PH/2,BW,PH,{
+      fillRgb:bd,strokeRgb:blk,noStroke:true,
+    }));
   });
 
+  // ── Body — absolute backmost, pushed last so it has the highest index ──
+  back.push(mkShp(nid(),DX,DY,DW,DH,{
+    fillRgb:bodyRgb,strokeRgb:bordRgb,sw:2.5,
+    mags:bMags,
+  }));
+
+  // Combine: front first (z-top), then mid, then back (z-bottom)
+  const shapes=[...front,...mid,...back];
   const items=shapes.join('\n');
   return ext==='.gstencil' ? gstencilXml(items,devName) : grafflev8Xml(items,devName);
 }
