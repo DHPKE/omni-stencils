@@ -51,6 +51,9 @@ input[type=text]:focus,input[type=number]:focus{border-color:var(--accent);}
 .zb span{font-size:10px;color:var(--muted);min-width:34px;text-align:center;}
 .dot{width:7px;height:7px;border-radius:50%;display:inline-block;}
 .sq{width:7px;height:7px;border-radius:1px;display:inline-block;}
+.seg{display:flex;gap:2px;margin-top:2px;}
+.seg button{flex:1;padding:4px 5px;font-size:10px;border:1px solid var(--border);border-radius:4px;background:var(--input-bg);color:var(--muted);cursor:pointer;transition:all .15s;}
+.seg button.act{background:var(--accent);border-color:var(--accent);color:#fff;}
 .dh{cursor:grab;color:var(--muted);font-size:15px;padding:0 3px;user-select:none;line-height:1;text-align:center;}
 .dh:active{cursor:grabbing;}
 .pt tr.dragging{opacity:.25;}
@@ -106,6 +109,25 @@ input[type=text]:focus,input[type=number]:focus{border-color:var(--accent);}
     <div class="r2">
       <div><label>Band Width (pt)</label><input type="number" id="bandW" value="120" min="40" max="300" oninput="refresh()"></div>
       <div><label>Port Size (pt)</label><input type="number" id="portSz" value="14" min="8" max="28" oninput="refresh()"></div>
+    </div>
+    <div class="r2">
+      <div>
+        <label>Name Position</label>
+        <div class="seg" id="namePos">
+          <button onclick="setSeg('namePos',this)" class="act" data-v="top">Top</button>
+          <button onclick="setSeg('namePos',this)" data-v="center">Center</button>
+          <button onclick="setSeg('namePos',this)" data-v="bottom">Bottom</button>
+        </div>
+      </div>
+      <div>
+        <label>Name Rotation</label>
+        <div class="seg" id="nameRot">
+          <button onclick="setSeg('nameRot',this)" class="act" data-v="0">0°</button>
+          <button onclick="setSeg('nameRot',this)" data-v="90">90°</button>
+          <button onclick="setSeg('nameRot',this)" data-v="180">180°</button>
+          <button onclick="setSeg('nameRot',this)" data-v="270">270°</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -207,6 +229,10 @@ input[type=text]:focus,input[type=number]:focus{border-color:var(--accent);}
 <script>
 /* ── State ─────────────────────────────────────── */
 let ZL=1.0, inSeq=0, outSeq=0;
+
+/* ── Segmented controls ─────────────────────────── */
+function setSeg(id,btn){document.querySelectorAll('#'+id+' button').forEach(b=>b.classList.remove('act'));btn.classList.add('act');refresh();}
+function getSeg(id){const b=document.querySelector('#'+id+' button.act');return b?b.dataset.v:null;}
 
 /* ── Color utils ───────────────────────────────── */
 function h2r(hex){
@@ -366,7 +392,7 @@ function rtf(text,size,bold,rgb,align){
 }
 
 function mkShp(id,x,y,w,h,opts){
-  const{shape='Rectangle',fillRgb,strokeRgb,sw=1,text,textSz=9,textBold=false,textRgb,textAlign='center',noFill=false,noStroke=false,mags=[]}=opts;
+  const{shape='Rectangle',fillRgb,strokeRgb,sw=1,text,textSz=9,textBold=false,textRgb,textAlign='center',noFill=false,noStroke=false,mags=[],rotation=0}=opts;
   let fXml=noFill?'<key>Draws</key><string>NO</string>':`<key>Color</key>${xc(fillRgb)}`;
   let sXml=noStroke?'<key>Draws</key><string>NO</string>':`<key>Color</key>${xc(strokeRgb)}<key>Width</key><real>${sw}</real>`;
   let tXml='';
@@ -376,10 +402,12 @@ function mkShp(id,x,y,w,h,opts){
   }
   let mXml='';
   if(mags.length) mXml=`<key>Magnets</key><array>${mags.map(m=>`<string>${m}</string>`).join('')}</array>`;
+  const rotXml=rotation?`<key>Rotation</key><real>${rotation}</real>`:'';
   return `<dict>
   <key>Bounds</key><string>{{${x},${y}},{${w},${h}}}</string>
   <key>Class</key><string>ShapedGraphic</string>
   <key>ID</key><integer>${id}</integer>
+  ${rotXml}
   <key>Shape</key><string>${shape}</string>
   <key>Style</key><dict>
     <key>fill</key><dict>${fXml}</dict>
@@ -435,11 +463,17 @@ function buildGraffle(ext='.gstencil'){
   const blk={r:0,g:0,b:0};
   const titleSz=Math.min(13,Math.max(8,Math.floor(DW/22)));
 
-  // ── Device title — floats in the top margin, always visible ──
-  front.push(mkShp(nid(),DX,DY,DW,TOP,{
+  // ── Device title — position and rotation from UI ──
+  const namePos=getSeg('namePos')||'top';
+  const nameRot=parseFloat(getSeg('nameRot')||'0');
+  let tty=DY, tth=TOP;
+  if(namePos==='center'){tty=DY; tth=DH;}
+  else if(namePos==='bottom'){tty=DY+DH-BOT; tth=BOT;}
+  front.push(mkShp(nid(),DX,tty,DW,tth,{
     noFill:true,noStroke:true,
     text:devName,textSz:titleSz,textBold:true,textRgb:textRgb,textAlign:'center',
     fillRgb:blk,strokeRgb:blk,
+    rotation:nameRot,
   }));
 
   // ── Input ports (left side) ──
@@ -636,14 +670,24 @@ function renderPrev(){
   const iYs=yD(ins.length),oYs=yD(outs.length);
   const titleSz=Math.min(12,Math.max(7,Math.floor((DW-BW*2-16)/12)));
 
+  const namePos=getSeg('namePos')||'top';
+  const nameRot=parseFloat(getSeg('nameRot')||'0');
+  // Title zone centre in SVG coords
+  let tcy;
+  if(namePos==='center') tcy=by+DH/2;
+  else if(namePos==='bottom') tcy=by+DH-BOT/2;
+  else tcy=by+TOP/2;
+  const tcx=bx+DW/2;
+  const rotAttr=nameRot?` transform="rotate(${nameRot},${tcx},${tcy})"`:''; 
+
   let s=`<svg xmlns="http://www.w3.org/2000/svg"
     width="${Math.round(svgW*ZL)}" height="${Math.round(svgH*ZL)}"
     viewBox="0 0 ${svgW} ${svgH}">
   <style>text{font-family:-apple-system,Helvetica,sans-serif;}</style>
   <rect x="${bx}" y="${by}" width="${DW}" height="${DH}" rx="2"
     fill="${bodyC}" stroke="${bordC}" stroke-width="2.5"/>
-  <text x="${bx+DW/2}" y="${by+DH/2}" text-anchor="middle" dominant-baseline="middle"
-    font-size="${titleSz}" font-weight="700" fill="${textC}" opacity="0.5">${xv(devName)}</text>`;
+  <text x="${tcx}" y="${tcy}" text-anchor="middle" dominant-baseline="middle"
+    font-size="${titleSz}" font-weight="700" fill="${textC}" opacity="0.85"${rotAttr}>${xv(devName)}</text>`;
 
   // Inputs — left side, label+■ INSIDE body
   ins.forEach((p,i)=>{
