@@ -199,12 +199,15 @@ input[type=text]:focus,input[type=number]:focus{border-color:var(--accent);}
     </div>
   </div>
 
-  <!-- Export -->
+  <!-- Import / Export -->
   <div class="card">
-    <div class="ct">⬇ Export</div>
-    <label>Filename</label>
+    <div class="ct">⬆⬇ Import / Export</div>
+    <div class="er">
+      <button class="btn o" onclick="importGraffle()">⬆ Import .graffle / .gstencil</button>
+    </div>
+    <label style="margin-top:10px">Filename</label>
     <input type="text" id="fname" value="QSC_QSYS_QIO-24F">
-    <div class="note">Labels &amp; port names are drawn <strong>inside</strong> the element. Square/circle indicators sit on the border as magnet connection points. In OmniGraffle: open → Select All → Group → save as Stencil.</div>
+    <div class="note">Exported files can be re-imported to continue editing. Labels &amp; port names are drawn <strong>inside</strong> the element. Square/circle indicators sit on the border as magnet connection points.</div>
     <div class="er">
       <button class="btn g" onclick="dl('.graffle')">⬇ .graffle</button>
       <button class="btn o" onclick="dl('.gstencil')">⬇ .gstencil</button>
@@ -737,7 +740,185 @@ function dl(ext){
   document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
 }
 function cpXml(){navigator.clipboard.writeText(buildGraffle('.gstencil')).then(()=>{const b=event.target;b.textContent='✓ Copied!';setTimeout(()=>b.textContent='⎘ XML',2000);});}
+/* ── Import ─────────────────────────────────────── */
+function importGraffle(){
+  const inp=document.createElement('input');
+  inp.type='file'; inp.accept='.graffle,.gstencil';
+  inp.onchange=e=>{
+    const f=e.target.files[0]; if(!f) return;
+    const r=new FileReader();
+    r.onload=ev=>{try{parseAndLoad(ev.target.result,f.name);}catch(err){alert('Import failed:\n'+err.message);}}
+    r.readAsText(f);
+  };
+  inp.click();
+}
 
+function parseAndLoad(xml,filename){
+  const doc=new DOMParser().parseFromString(xml,'application/xml');
+  if(doc.querySelector('parsererror')) throw new Error('Invalid XML');
+
+  /* plist helpers */
+  function pd(el){
+    if(!el) return {};
+    const out={},ch=Array.from(el.children);
+    for(let i=0;i<ch.length-1;i+=2) if(ch[i].tagName==='key') out[ch[i].textContent]=ch[i+1];
+    return out;
+  }
+  function pStr(el,k){return pd(el)[k]?.textContent||'';}
+  function parseBounds(s){
+    const m=s.match(/\{\{(-?[\d.]+),(-?[\d.]+)\},\{(-?[\d.]+),(-?[\d.]+)\}\}/);
+    return m?{x:+m[1],y:+m[2],w:+m[3],h:+m[4]}:{x:0,y:0,w:0,h:0};
+  }
+  function colorHex(cd){
+    if(!cd) return '#000000';
+    return '#'+['r','g','b'].map(k=>Math.round(parseFloat(pStr(cd,k)||'0')*255).toString(16).padStart(2,'0')).join('');
+  }
+  function fillColor(styleEl){return colorHex(pd(pd(styleEl)['fill'])['Color']);}
+  function strokeColor(styleEl){return colorHex(pd(pd(styleEl)['stroke'])['Color']);}
+  function isNF(styleEl){return pStr(pd(styleEl)['fill'],'Draws')==='NO';}
+  function isNS(styleEl){return pStr(pd(styleEl)['stroke'],'Draws')==='NO';}
+  function fromRtf(rtf){
+    const m=rtf.match(/\\cf1\s+([\s\S]+?)\s*\}$/);
+    return m?m[1].replace(/\\\{/g,'{').replace(/\\\}/g,'}').replace(/\\\\/g,'\\').trim():rtf;
+  }
+  function textColorFromRtf(rtf){
+    const m=rtf.match(/\\red(\d+)\\green(\d+)\\blue(\d+)/);
+    if(!m) return '#ffffff';
+    return '#'+[m[1],m[2],m[3]].map(v=>parseInt(v).toString(16).padStart(2,'0')).join('');
+  }
+
+  /* find GraphicsList */
+  const rootD=doc.querySelector('plist > dict');
+  if(!rootD) throw new Error('No plist dict');
+  const rp=pd(rootD);
+  let glEl=rp['GraphicsList'];
+  if(!glEl && rp['Sheets']){
+    const sheet=Array.from(rp['Sheets'].children).find(el=>el.tagName==='dict');
+    glEl=sheet?pd(sheet)['GraphicsList']:null;
+  }
+  if(!glEl) throw new Error('No GraphicsList found');
+
+  /* find Group */
+  const groupEl=Array.from(glEl.children)
+    .find(el=>el.tagName==='dict'&&pStr(el,'Class')==='Group');
+  if(!groupEl) throw new Error('No Group found \u2014 was this file exported by this tool?');
+  const graphicsEl=pd(groupEl)['Graphics'];
+  if(!graphicsEl) throw new Error('No Graphics array in group');
+  const shapes=Array.from(graphicsEl.children).filter(el=>el.tagName==='dict');
+  if(shapes.length<2) throw new Error('Too few shapes in group');
+
+  /* body = last shape (always pushed last in buildGraffle) */
+  const bodyEl=shapes[shapes.length-1];
+  const bodyBounds=parseBounds(pd(bodyEl)['Bounds']?.textContent||'');
+  const {x:DX,y:DY,w:DW,h:DH}=bodyBounds;
+  const bodyColor=fillColor(pd(bodyEl)['Style']);
+  const borderColor=strokeColor(pd(bodyEl)['Style']);
+
+  /* classify remaining shapes */
+  let titleEl=null;
+  const inLabels=[],outLabels=[],inSquares=[],outCircles=[],inBands=[],outBands=[];
+  for(const sh of shapes.slice(0,-1)){
+    const d=pd(sh);
+    const styleEl=d['Style'];
+    const shapeType=pStr(sh,'Shape')||'Rectangle';
+    const textEl=d['Text'];
+    const magsEl=d['Magnets'];
+    const mags=magsEl?Array.from(magsEl.children).map(m=>m.textContent):[];
+    const nf=isNF(styleEl), ns=isNS(styleEl);
+    if(nf&&ns&&textEl){
+      const align=parseInt(pStr(textEl,'Align')||'1');
+      if(align===1) titleEl=sh;
+      else if(align===0) inLabels.push(sh);
+      else outLabels.push(sh);
+    } else if(!nf&&!ns&&shapeType==='Rectangle'&&mags.some(m=>m.includes('{-1,'))){
+      inSquares.push(sh);
+    } else if(!nf&&!ns&&shapeType==='Circle'){
+      outCircles.push(sh);
+    } else if(!nf&&ns&&!textEl&&shapeType==='Rectangle'){
+      const bx=parseBounds(d['Bounds']?.textContent||'').x;
+      (bx<DX+DW/2?inBands:outBands).push(sh);
+    }
+  }
+
+  /* device name, text color, rotation, position from title */
+  let devName='Device',textColor='#ffffff',nameRot=0,namePos='top';
+  if(titleEl){
+    const rtf=pStr(pd(titleEl)['Text'],'Text');
+    devName=fromRtf(rtf)||'Device';
+    textColor=textColorFromRtf(rtf);
+    const rotStr=pd(titleEl)['Rotation']?.textContent;
+    nameRot=rotStr?parseFloat(rotStr):0;
+    const tb=parseBounds(pd(titleEl)['Bounds']?.textContent||'');
+    if(tb.h>=DH*0.8) namePos='center';
+    else if(tb.y+tb.h/2>DY+DH*0.65) namePos='bottom';
+    else namePos='top';
+  }
+
+  /* band width & port size */
+  const BW=inBands.length?parseBounds(pd(inBands[0])['Bounds']?.textContent||'').w:120;
+  const PS=inSquares.length?parseBounds(pd(inSquares[0])['Bounds']?.textContent||'').w
+    :outCircles.length?parseBounds(pd(outCircles[0])['Bounds']?.textContent||'').w:14;
+
+  /* sort by Y */
+  const byY=(a,b)=>parseBounds(pd(a)['Bounds']?.textContent||'').y-parseBounds(pd(b)['Bounds']?.textContent||'').y;
+  inLabels.sort(byY); outLabels.sort(byY); inSquares.sort(byY); outCircles.sort(byY);
+
+  /* mag counts: cluster body magnets by proximity */
+  const bodyMags=pd(bodyEl)['Magnets']?Array.from(pd(bodyEl)['Magnets'].children).map(m=>m.textContent):[];
+  function magCounts(prefix){
+    const ys=bodyMags.filter(m=>m.startsWith(prefix))
+      .map(m=>parseFloat(m.replace(new RegExp('^\\'+prefix.replace('{','{').replace(',',',')|prefix),'').replace(/[{}]/g,''))||
+             parseFloat((m.match(/[-\d.]+$/)||['0'])[0]));
+    // simpler: extract numeric part after the prefix
+    const vals=bodyMags.filter(m=>m.startsWith(prefix))
+      .map(m=>{const r=m.match(/[-\d.]+,([\s\S]+?)\}/); return r?parseFloat(r[1]):0;})
+      .sort((a,b)=>a-b);
+    const clusters=[]; let cur=[];
+    for(const y of vals){
+      if(!cur.length||Math.abs(y-cur[cur.length-1])<0.05) cur.push(y);
+      else{clusters.push(cur.length);cur=[y];}
+    }
+    if(cur.length) clusters.push(cur.length);
+    return clusters;
+  }
+  const inMC=magCounts('{-1,'), outMC=magCounts('{1,');
+
+  function portColor(el){
+    if(!el) return '#22c55e';
+    return fillColor(pd(el)['Style']);
+  }
+  function portName(el){
+    if(!el) return '?';
+    return fromRtf(pStr(pd(el)['Text'],'Text'));
+  }
+
+  const inPorts=inLabels.map((l,i)=>({name:portName(l),color:portColor(inSquares[i]),mags:inMC[i]||1}));
+  const outPorts=outLabels.map((l,i)=>({name:portName(l),color:portColor(outCircles[i]),mags:outMC[i]||1}));
+
+  /* ── populate UI ── */
+  document.getElementById('devName').value=devName;
+  document.getElementById('devW').value=Math.round(DW);
+  document.getElementById('devH').value=Math.round(DH);
+  [['body',bodyColor],['border',borderColor],['text',textColor]].forEach(([id,c])=>{
+    document.getElementById(id+'C').value=c;
+    document.getElementById(id+'CH').value=c;
+  });
+  document.getElementById('bandW').value=Math.round(BW);
+  document.getElementById('portSz').value=Math.round(PS);
+  document.getElementById('fname').value=(filename||'stencil').replace(/\.(graffle|gstencil)$/,'');
+
+  document.querySelectorAll('#namePos button').forEach(b=>b.classList.toggle('act',b.dataset.v===namePos));
+  const rv=[0,90,180,270].includes(nameRot)?String(nameRot):'0';
+  document.querySelectorAll('#nameRot button').forEach(b=>b.classList.toggle('act',b.dataset.v===rv));
+
+  ['inTb','outTb'].forEach(id=>document.getElementById(id).innerHTML='');
+  inSeq=0; outSeq=0;
+  inPorts.forEach(p=>mkRow('in',p.name,p.color,p.mags));
+  outPorts.forEach(p=>mkRow('out',p.name,p.color,p.mags));
+  ['inAllChk','outAllChk'].forEach(id=>{const c=document.getElementById(id);c.checked=false;c.indeterminate=false;});
+  updBatch('in'); updBatch('out');
+  refresh();
+}
 function refresh(){renderPrev();}
 
 /* ── Init with QIO-24F defaults ────────────────── */
