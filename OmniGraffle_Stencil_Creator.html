@@ -51,6 +51,17 @@ input[type=text]:focus,input[type=number]:focus{border-color:var(--accent);}
 .zb span{font-size:10px;color:var(--muted);min-width:34px;text-align:center;}
 .dot{width:7px;height:7px;border-radius:50%;display:inline-block;}
 .sq{width:7px;height:7px;border-radius:1px;display:inline-block;}
+.dh{cursor:grab;color:var(--muted);font-size:15px;padding:0 3px;user-select:none;line-height:1;text-align:center;}
+.dh:active{cursor:grabbing;}
+.pt tr.dragging{opacity:.25;}
+.pt tr.drag-over td{box-shadow:inset 0 2px 0 var(--accent);}
+.pt tr.sel td{background:rgba(79,142,247,.10);}
+.chk{width:13px;height:13px;cursor:pointer;accent-color:var(--accent);}
+.batch-bar{display:none;flex-direction:column;gap:6px;margin-top:8px;padding:9px 10px;background:rgba(79,142,247,.07);border:1px solid rgba(79,142,247,.22);border-radius:6px;}
+.batch-bar.vis{display:flex;}
+.brow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.bl{font-size:10px;color:var(--muted);white-space:nowrap;}
+.bprev{font-size:9px;color:var(--accent);font-family:monospace;min-height:12px;}
 </style>
 </head>
 <body>
@@ -102,20 +113,68 @@ input[type=text]:focus,input[type=number]:focus{border-color:var(--accent);}
   <div class="card">
     <div class="ct"><span class="sq" style="background:var(--green)"></span>Inputs&nbsp;<span style="font-weight:400;font-size:9px;opacity:.7">(left · ■ square on border)</span></div>
     <table class="pt">
-      <thead><tr><th style="width:18px">#</th><th>Name</th><th style="width:26px" title="Color">■</th><th style="width:38px" title="Magnets">Mags</th><th style="width:42px"></th></tr></thead>
+      <thead><tr>
+        <th style="width:14px"><input type="checkbox" class="chk" id="inAllChk" onchange="selAll('in',this.checked)"></th>
+        <th style="width:12px"></th>
+        <th style="width:18px">#</th>
+        <th>Name</th>
+        <th style="width:26px" title="Color">■</th>
+        <th style="width:38px" title="Magnets">Mags</th>
+        <th style="width:22px"></th>
+      </tr></thead>
       <tbody id="inTb"></tbody>
     </table>
     <div class="ar"><span class="pc" id="inCnt">0 inputs</span><button class="btn o sm" onclick="addPort('in')">+ Input</button></div>
+    <div class="batch-bar" id="inBatch">
+      <div class="brow"><span class="bl">Batch edit <strong id="inBatchCnt">0</strong> selected</span></div>
+      <div class="brow">
+        <span class="bl">Name:</span>
+        <input type="text" id="inBatchName" placeholder="e.g. Mic/Line In 1  (auto-increments)" style="flex:1;min-width:110px" oninput="bPrev('in')">
+      </div>
+      <div class="bprev" id="inBatchPrev"></div>
+      <div class="brow">
+        <span class="bl">Color:</span>
+        <input type="color" id="inBatchColor" value="#22c55e" style="width:26px;height:26px;padding:2px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);cursor:pointer">
+        <span class="bl">Mags:</span>
+        <input type="number" id="inBatchMags" min="1" max="8" style="width:44px" placeholder="—">
+        <button class="btn o sm" onclick="applyBatch('in')">Apply</button>
+        <button class="btn o sm" onclick="clearSel('in')">Deselect</button>
+      </div>
+    </div>
   </div>
 
   <!-- Outputs -->
   <div class="card">
     <div class="ct"><span class="dot" style="background:var(--orange)"></span>Outputs&nbsp;<span style="font-weight:400;font-size:9px;opacity:.7">(right · ● circle on border)</span></div>
     <table class="pt">
-      <thead><tr><th style="width:18px">#</th><th>Name</th><th style="width:26px" title="Color">●</th><th style="width:38px" title="Magnets">Mags</th><th style="width:42px"></th></tr></thead>
+      <thead><tr>
+        <th style="width:14px"><input type="checkbox" class="chk" id="outAllChk" onchange="selAll('out',this.checked)"></th>
+        <th style="width:12px"></th>
+        <th style="width:18px">#</th>
+        <th>Name</th>
+        <th style="width:26px" title="Color">●</th>
+        <th style="width:38px" title="Magnets">Mags</th>
+        <th style="width:22px"></th>
+      </tr></thead>
       <tbody id="outTb"></tbody>
     </table>
     <div class="ar"><span class="pc" id="outCnt">0 outputs</span><button class="btn o sm" onclick="addPort('out')">+ Output</button></div>
+    <div class="batch-bar" id="outBatch">
+      <div class="brow"><span class="bl">Batch edit <strong id="outBatchCnt">0</strong> selected</span></div>
+      <div class="brow">
+        <span class="bl">Name:</span>
+        <input type="text" id="outBatchName" placeholder="e.g. Line Out 1  (auto-increments)" style="flex:1;min-width:110px" oninput="bPrev('out')">
+      </div>
+      <div class="bprev" id="outBatchPrev"></div>
+      <div class="brow">
+        <span class="bl">Color:</span>
+        <input type="color" id="outBatchColor" value="#f97316" style="width:26px;height:26px;padding:2px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);cursor:pointer">
+        <span class="bl">Mags:</span>
+        <input type="number" id="outBatchMags" min="1" max="8" style="width:44px" placeholder="—">
+        <button class="btn o sm" onclick="applyBatch('out')">Apply</button>
+        <button class="btn o sm" onclick="clearSel('out')">Deselect</button>
+      </div>
+    </div>
   </div>
 
   <!-- Export -->
@@ -160,29 +219,128 @@ function darken(rgb,f){return{r:rgb.r*f,g:rgb.g*f,b:rgb.b*f};}
 function sp(f){document.getElementById(f+'CH').value=document.getElementById(f+'C').value;refresh();}
 function sh(f){const v=document.getElementById(f+'CH').value;if(/^#[0-9a-fA-F]{6}$/.test(v)){document.getElementById(f+'C').value=v;refresh();}}
 
+/* ── Drag & Drop ───────────────────────────────── */
+let _dSrc=null;
+function dStart(e){
+  _dSrc=this;
+  e.dataTransfer.effectAllowed='move';
+  e.dataTransfer.setData('text/plain','');
+  setTimeout(()=>this.classList.add('dragging'),0);
+}
+function dOver(e){
+  e.preventDefault();
+  e.dataTransfer.dropEffect='move';
+  if(_dSrc&&_dSrc!==this){
+    document.querySelectorAll('.pt tr').forEach(r=>r.classList.remove('drag-over'));
+    this.classList.add('drag-over');
+  }
+}
+function dDrop(e){
+  e.preventDefault();
+  if(!_dSrc||_dSrc===this)return;
+  const tb=this.parentNode;
+  const rows=Array.from(tb.rows);
+  const si=rows.indexOf(_dSrc),di=rows.indexOf(this);
+  if(si<di) tb.insertBefore(_dSrc,this.nextElementSibling);
+  else tb.insertBefore(_dSrc,this);
+  document.querySelectorAll('.pt tr').forEach(r=>r.classList.remove('drag-over'));
+  renum(tb); refresh();
+}
+function dEnd(){
+  this.classList.remove('dragging');
+  document.querySelectorAll('.pt tr').forEach(r=>r.classList.remove('drag-over'));
+  _dSrc=null;
+}
+
+/* ── Selection & Batch edit ─────────────────────── */
+function onChk(chk){
+  const tr=chk.closest('tr');
+  tr.classList.toggle('sel',chk.checked);
+  const side=tr.closest('tbody').id==='inTb'?'in':'out';
+  const tb=tr.closest('tbody'),rows=Array.from(tb.rows);
+  const n=rows.filter(r=>r.classList.contains('sel')).length;
+  const ah=document.getElementById(side==='in'?'inAllChk':'outAllChk');
+  ah.indeterminate=n>0&&n<rows.length; ah.checked=n===rows.length;
+  updBatch(side);
+}
+function selAll(side,checked){
+  const tb=document.getElementById(side==='in'?'inTb':'outTb');
+  Array.from(tb.rows).forEach(r=>{r.classList.toggle('sel',checked);r.querySelector('.chk').checked=checked;});
+  const ah=document.getElementById(side==='in'?'inAllChk':'outAllChk');
+  ah.indeterminate=false; updBatch(side);
+}
+function clearSel(side){selAll(side,false);}
+function updBatch(side){
+  const tb=document.getElementById(side==='in'?'inTb':'outTb');
+  const sel=Array.from(tb.rows).filter(r=>r.classList.contains('sel'));
+  document.getElementById(side==='in'?'inBatchCnt':'outBatchCnt').textContent=sel.length;
+  document.getElementById(side==='in'?'inBatch':'outBatch').classList.toggle('vis',sel.length>1);
+  bPrev(side);
+}
+function parseBase(s){
+  const m=s.match(/^([\s\S]*?)(\s*)(\d+)$/);
+  if(m) return{pfx:m[1]+(m[2]||''),start:parseInt(m[3])};
+  return{pfx:s+(s.endsWith(' ')?'':' '),start:1};
+}
+function bPrev(side){
+  const raw=(document.getElementById(side==='in'?'inBatchName':'outBatchName').value||'').trim();
+  const prev=document.getElementById(side==='in'?'inBatchPrev':'outBatchPrev');
+  const tb=document.getElementById(side==='in'?'inTb':'outTb');
+  const sel=Array.from(tb.rows).filter(r=>r.classList.contains('sel'));
+  if(!raw||sel.length===0){prev.textContent='';return;}
+  const{pfx,start}=parseBase(raw);
+  const ex=sel.slice(0,3).map((_,i)=>pfx+(start+i)).join(', ')+(sel.length>3?', …':'');
+  prev.textContent='→ '+ex;
+}
+function applyBatch(side){
+  const tb=document.getElementById(side==='in'?'inTb':'outTb');
+  const sel=Array.from(tb.rows).filter(r=>r.classList.contains('sel'));
+  if(!sel.length)return;
+  const raw=(document.getElementById(side==='in'?'inBatchName':'outBatchName').value||'').trim();
+  const color=document.getElementById(side==='in'?'inBatchColor':'outBatchColor').value;
+  const magsVal=document.getElementById(side==='in'?'inBatchMags':'outBatchMags').value;
+  const{pfx,start}=raw?parseBase(raw):{pfx:null,start:0};
+  sel.forEach((r,i)=>{
+    if(pfx!==null) r.cells[3].querySelector('input[type=text]').value=pfx+(start+i);
+    r.cells[4].querySelector('input[type=color]').value=color;
+    if(magsVal) r.cells[5].querySelector('input[type=number]').value=parseInt(magsVal);
+  });
+  refresh();
+}
+
 /* ── Port rows ─────────────────────────────────── */
 function mkRow(side,name,color,mags){
   const tb=document.getElementById(side==='in'?'inTb':'outTb');
   const n=tb.rows.length+1; const seq=side==='in'?++inSeq:++outSeq;
   const dc=side==='in'?'#22c55e':'#f97316';
   const tr=document.createElement('tr'); tr.dataset.seq=seq;
-  tr.innerHTML=`<td style="color:var(--muted);font-size:10px;padding-left:2px">${n}</td>
+  tr.draggable=true;
+  tr.innerHTML=`<td><input type="checkbox" class="chk" onchange="onChk(this)"></td>
+    <td class="dh" title="Drag to reorder">⠿</td>
+    <td style="color:var(--muted);font-size:10px;padding-left:2px">${n}</td>
     <td><input type="text" value="${name||(side==='in'?'Input':'Output')+' '+n}" oninput="refresh()"></td>
     <td><input type="color" value="${color||dc}" oninput="refresh()"></td>
     <td><input type="number" value="${mags||1}" min="1" max="8" style="width:36px" oninput="refresh()"></td>
-    <td><button class="bi" onclick="mv(this,-1)">↑</button><button class="bi d" onclick="rm(this)">×</button></td>`;
+    <td><button class="bi d" onclick="rm(this)">×</button></td>`;
+  tr.addEventListener('dragstart',dStart);
+  tr.addEventListener('dragover',dOver);
+  tr.addEventListener('drop',dDrop);
+  tr.addEventListener('dragend',dEnd);
   tb.appendChild(tr); renum(tb);
 }
 function addPort(side){mkRow(side);refresh();}
-function rm(btn){const tr=btn.closest('tr'),tb=tr.parentNode;tr.remove();renum(tb);refresh();}
-function mv(btn,d){const tr=btn.closest('tr'),tb=tr.parentNode,s=d===-1?tr.previousElementSibling:tr.nextElementSibling;if(s){d===-1?tb.insertBefore(tr,s):tb.insertBefore(s,tr);}renum(tb);refresh();}
-function renum(tb){Array.from(tb.rows).forEach((r,i)=>r.cells[0].textContent=i+1);}
+function rm(btn){
+  const tr=btn.closest('tr'),tb=tr.parentNode;
+  const side=tb.id==='inTb'?'in':'out';
+  tr.remove(); renum(tb); updBatch(side); refresh();
+}
+function renum(tb){Array.from(tb.rows).forEach((r,i)=>r.cells[2].textContent=i+1);}
 function gp(side){
   const tb=document.getElementById(side==='in'?'inTb':'outTb');
   return Array.from(tb.rows).map(r=>({
-    name:r.cells[1].querySelector('input[type=text]').value||'?',
-    color:r.cells[2].querySelector('input[type=color]').value,
-    mags:Math.max(1,parseInt(r.cells[3].querySelector('input[type=number]').value)||1),
+    name:r.cells[3].querySelector('input[type=text]').value||'?',
+    color:r.cells[4].querySelector('input[type=color]').value,
+    mags:Math.max(1,parseInt(r.cells[5].querySelector('input[type=number]').value)||1),
   }));
 }
 
