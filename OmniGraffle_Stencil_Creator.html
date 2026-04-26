@@ -338,8 +338,20 @@ function buildGraffle(ext='.gstencil'){
 
   // Combine: front first (z-top), then mid, then back (z-bottom)
   const shapes=[...front,...mid,...back];
-  const items=shapes.join('\n');
-  return ext==='.gstencil' ? gstencilXml(items,devName) : grafflev8Xml(items,devName);
+
+  // Wrap all shapes in a single Group so the element behaves as one object
+  const gx=DX-PS/2, gy=DY, gw=DW+PS, gh=DH;
+  const groupXml=`<dict>
+  <key>Bounds</key><string>{{${gx},${gy}},{${gw},${gh}}}</string>
+  <key>Class</key><string>Group</string>
+  <key>Graphics</key>
+  <array>
+${shapes.join('\n')}
+  </array>
+  <key>ID</key><integer>${nid()}</integer>
+</dict>`;
+
+  return ext==='.gstencil' ? gstencilXml(groupXml,devName) : grafflev8Xml(groupXml,devName);
 }
 
 /* ── OmniGraffle .gstencil format (flat GraphicsList + Type:stencil) ── */
