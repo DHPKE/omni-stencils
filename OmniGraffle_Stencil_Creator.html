@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OmniGraffle Stencil Creator</title>
+<style>
+:root{--bg:#12131a;--surface:#1a1d2b;--card:#252a3d;--accent:#4f8ef7;--green:#22c55e;--orange:#f97316;--text:#e2e8f0;--muted:#7a86a3;--border:#2e3550;--input-bg:#111420;--r:8px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);height:100vh;display:flex;flex-direction:column;overflow:hidden;}
+header{padding:11px 18px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;flex-shrink:0;}
+header h1{font-size:15px;font-weight:700;}
+header .sub{font-size:11px;color:var(--muted);margin-left:auto;}
+.main{display:grid;grid-template-columns:390px 1fr;flex:1;overflow:hidden;}
+.cfg{background:var(--surface);border-right:1px solid var(--border);overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:12px;}
+.prv{background:#0b0d14;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:22px 28px;overflow:auto;gap:14px;}
+.prv-lbl{color:var(--muted);font-size:10px;letter-spacing:.06em;text-transform:uppercase;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:12px;}
+.ct{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:5px;}
+label{display:block;font-size:11px;color:var(--muted);margin-bottom:3px;margin-top:8px;}
+label:first-of-type{margin-top:0;}
+input[type=text],input[type=number]{width:100%;background:var(--input-bg);border:1px solid var(--border);border-radius:5px;color:var(--text);padding:6px 9px;font-size:12px;outline:none;transition:border-color .2s;}
+input[type=text]:focus,input[type=number]:focus{border-color:var(--accent);}
+.r2{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.r3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+.cr{display:flex;align-items:center;gap:6px;}
+.cr input[type=color]{width:32px;height:32px;padding:2px;border-radius:5px;border:1px solid var(--border);background:var(--input-bg);cursor:pointer;flex-shrink:0;}
+.cr input[type=text]{flex:1;font-family:monospace;font-size:11px;}
+.pt{width:100%;border-collapse:collapse;}
+.pt th{font-size:9px;font-weight:700;text-transform:uppercase;color:var(--muted);padding:4px 2px;text-align:left;border-bottom:1px solid var(--border);}
+.pt td{padding:2px 2px;vertical-align:middle;}
+.pt td input[type=text]{padding:4px 5px;font-size:11px;}
+.pt td input[type=color]{width:24px;height:24px;padding:2px;border-radius:3px;border:1px solid var(--border);background:var(--input-bg);cursor:pointer;}
+.pt td input[type=number]{padding:4px 3px;font-size:11px;text-align:center;}
+.pt tr:hover td{background:rgba(255,255,255,.02);}
+.btn{display:inline-flex;align-items:center;gap:4px;padding:6px 12px;border-radius:5px;border:none;font-size:11px;font-weight:500;cursor:pointer;transition:all .2s;}
+.o{background:transparent;border:1px solid var(--border);color:var(--text);}
+.o:hover{border-color:var(--accent);color:var(--accent);}
+.g{background:var(--green);color:#fff;}
+.g:hover{background:#16a34a;}
+.sm{padding:4px 9px;font-size:10px;}
+.bi{background:none;border:none;color:var(--muted);cursor:pointer;padding:2px 4px;border-radius:3px;font-size:12px;line-height:1;}
+.bi:hover{color:var(--text);background:rgba(255,255,255,.08);}
+.bi.d:hover{color:#f87171;background:rgba(248,113,113,.1);}
+.ar{display:flex;justify-content:space-between;align-items:center;margin-top:6px;}
+.pc{font-size:10px;color:var(--muted);}
+.note{font-size:10px;color:var(--muted);background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:5px;padding:7px 9px;line-height:1.5;margin-top:8px;}
+.er{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;}
+#svgWrap{background:rgba(255,255,255,.04);border-radius:10px;padding:20px;border:1px solid var(--border);}
+.zb{display:flex;align-items:center;gap:6px;}
+.zb span{font-size:10px;color:var(--muted);min-width:34px;text-align:center;}
+.dot{width:7px;height:7px;border-radius:50%;display:inline-block;}
+.sq{width:7px;height:7px;border-radius:1px;display:inline-block;}
+</style>
+</head>
+<body>
+<header>
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+    <rect x="4" y="2" width="12" height="16" rx="2" stroke="#4f8ef7" stroke-width="1.5"/>
+    <rect x="0" y="6"  width="4" height="3" rx="0.5" fill="#22c55e"/>
+    <rect x="0" y="11" width="4" height="3" rx="0.5" fill="#22c55e"/>
+    <circle cx="20" cy="7.5"  r="2" fill="#f97316"/>
+    <circle cx="20" cy="12.5" r="2" fill="#f97316"/>
+  </svg>
+  <h1>OmniGraffle Stencil Creator</h1>
+  <span class="sub">■ inputs · ● outputs · labels inside</span>
+</header>
+
+<div class="main">
+<div class="cfg">
+
+  <!-- Device -->
+  <div class="card">
+    <div class="ct">⬛ Device</div>
+    <label>Device Name</label>
+    <input type="text" id="devName" value="QSC Q-SYS QIO-24F" oninput="refresh()">
+    <div class="r2">
+      <div><label>Width (pt)</label><input type="number" id="devW" value="320" min="120" max="900" oninput="refresh()"></div>
+      <div><label>Height (pt)</label><input type="number" id="devH" value="480" min="60" max="1400" oninput="refresh()"></div>
+    </div>
+    <div class="r3">
+      <div>
+        <label>Body Color</label>
+        <div class="cr"><input type="color" id="bodyC" value="#1e2433" oninput="sp('body')"><input type="text" id="bodyCH" value="#1e2433" maxlength="7" oninput="sh('body')"></div>
+      </div>
+      <div>
+        <label>Border Color</label>
+        <div class="cr"><input type="color" id="borderC" value="#7a95bb" oninput="sp('border')"><input type="text" id="borderCH" value="#7a95bb" maxlength="7" oninput="sh('border')"></div>
+      </div>
+      <div>
+        <label>Text Color</label>
+        <div class="cr"><input type="color" id="textC" value="#ffffff" oninput="sp('text')"><input type="text" id="textCH" value="#ffffff" maxlength="7" oninput="sh('text')"></div>
+      </div>
+    </div>
+    <div class="r2">
+      <div><label>Band Width (pt)</label><input type="number" id="bandW" value="120" min="40" max="300" oninput="refresh()"></div>
+      <div><label>Port Size (pt)</label><input type="number" id="portSz" value="14" min="8" max="28" oninput="refresh()"></div>
+    </div>
+  </div>
+
+  <!-- Inputs -->
+  <div class="card">
+    <div class="ct"><span class="sq" style="background:var(--green)"></span>Inputs&nbsp;<span style="font-weight:400;font-size:9px;opacity:.7">(left · ■ square on border)</span></div>
+    <table class="pt">
+      <thead><tr><th style="width:18px">#</th><th>Name</th><th style="width:26px" title="Color">■</th><th style="width:38px" title="Magnets">Mags</th><th style="width:42px"></th></tr></thead>
+      <tbody id="inTb"></tbody>
+    </table>
+    <div class="ar"><span class="pc" id="inCnt">0 inputs</span><button class="btn o sm" onclick="addPort('in')">+ Input</button></div>
+  </div>
+
+  <!-- Outputs -->
+  <div class="card">
+    <div class="ct"><span class="dot" style="background:var(--orange)"></span>Outputs&nbsp;<span style="font-weight:400;font-size:9px;opacity:.7">(right · ● circle on border)</span></div>
+    <table class="pt">
+      <thead><tr><th style="width:18px">#</th><th>Name</th><th style="width:26px" title="Color">●</th><th style="width:38px" title="Magnets">Mags</th><th style="width:42px"></th></tr></thead>
+      <tbody id="outTb"></tbody>
+    </table>
+    <div class="ar"><span class="pc" id="outCnt">0 outputs</span><button class="btn o sm" onclick="addPort('out')">+ Output</button></div>
+  </div>
+
+  <!-- Export -->
+  <div class="card">
+    <div class="ct">⬇ Export</div>
+    <label>Filename</label>
+    <input type="text" id="fname" value="QSC_QSYS_QIO-24F">
+    <div class="note">Labels &amp; port names are drawn <strong>inside</strong> the element. Square/circle indicators sit on the border as magnet connection points. In OmniGraffle: open → Select All → Group → save as Stencil.</div>
+    <div class="er">
+      <button class="btn g" onclick="dl('.graffle')">⬇ .graffle</button>
+      <button class="btn o" onclick="dl('.gstencil')">⬇ .gstencil</button>
+      <button class="btn o" onclick="cpXml()">⎘ XML</button>
+    </div>
+  </div>
+
+</div><!-- /cfg -->
+
+<!-- Preview -->
+<div class="prv">
+  <div class="prv-lbl">Live Preview</div>
+  <div id="svgWrap"><div id="svgOut"></div></div>
+  <div class="zb">
+    <button class="btn o sm" onclick="zm(-1)">−</button>
+    <span id="zLbl">100%</span>
+    <button class="btn o sm" onclick="zm(1)">+</button>
+  </div>
+</div>
+</div><!-- /main -->
+
+<script>
+/* ── State ─────────────────────────────────────── */
+let ZL=1.0, inSeq=0, outSeq=0;
+
+/* ── Color utils ───────────────────────────────── */
+function h2r(hex){
+  hex=hex.replace(/[^0-9a-fA-F]/g,'');
+  if(hex.length===3) hex=hex.split('').map(c=>c+c).join('');
+  const n=parseInt(hex.slice(0,6),16);
+  return{r:((n>>16)&255)/255,g:((n>>8)&255)/255,b:(n&255)/255};
+}
+function darken(rgb,f){return{r:rgb.r*f,g:rgb.g*f,b:rgb.b*f};}
+function sp(f){document.getElementById(f+'CH').value=document.getElementById(f+'C').value;refresh();}
+function sh(f){const v=document.getElementById(f+'CH').value;if(/^#[0-9a-fA-F]{6}$/.test(v)){document.getElementById(f+'C').value=v;refresh();}}
+
+/* ── Port rows ─────────────────────────────────── */
+function mkRow(side,name,color,mags){
+  const tb=document.getElementById(side==='in'?'inTb':'outTb');
+  const n=tb.rows.length+1; const seq=side==='in'?++inSeq:++outSeq;
+  const dc=side==='in'?'#22c55e':'#f97316';
+  const tr=document.createElement('tr'); tr.dataset.seq=seq;
+  tr.innerHTML=`<td style="color:var(--muted);font-size:10px;padding-left:2px">${n}</td>
+    <td><input type="text" value="${name||(side==='in'?'Input':'Output')+' '+n}" oninput="refresh()"></td>
+    <td><input type="color" value="${color||dc}" oninput="refresh()"></td>
+    <td><input type="number" value="${mags||1}" min="1" max="8" style="width:36px" oninput="refresh()"></td>
+    <td><button class="bi" onclick="mv(this,-1)">↑</button><button class="bi d" onclick="rm(this)">×</button></td>`;
+  tb.appendChild(tr); renum(tb);
+}
+function addPort(side){mkRow(side);refresh();}
+function rm(btn){const tr=btn.closest('tr'),tb=tr.parentNode;tr.remove();renum(tb);refresh();}
+function mv(btn,d){const tr=btn.closest('tr'),tb=tr.parentNode,s=d===-1?tr.previousElementSibling:tr.nextElementSibling;if(s){d===-1?tb.insertBefore(tr,s):tb.insertBefore(s,tr);}renum(tb);refresh();}
+function renum(tb){Array.from(tb.rows).forEach((r,i)=>r.cells[0].textContent=i+1);}
+function gp(side){
+  const tb=document.getElementById(side==='in'?'inTb':'outTb');
+  return Array.from(tb.rows).map(r=>({
+    name:r.cells[1].querySelector('input[type=text]').value||'?',
+    color:r.cells[2].querySelector('input[type=color]').value,
+    mags:Math.max(1,parseInt(r.cells[3].querySelector('input[type=number]').value)||1),
+  }));
+}
+
+/* ── OmniGraffle generator ─────────────────────── */
+let _id=1; function nid(){return _id++;}
+
+function xe(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+/* OmniGraffle expects string values for color components (not reals), with no alpha key */
+function xc(rgb){
+  return `<dict>`+
+    `<key>r</key><string>${rgb.r.toFixed(4)}</string>`+
+    `<key>g</key><string>${rgb.g.toFixed(4)}</string>`+
+    `<key>b</key><string>${rgb.b.toFixed(4)}</string></dict>`;
+}
+
+function rtf(text,size,bold,rgb,align){
+  const rr=Math.round(rgb.r*255),rg=Math.round(rgb.g*255),rb=Math.round(rgb.b*255);
+  const fn=bold?'\\f0':'\\f1';
+  const qa=align==='left'?'\\ql':align==='right'?'\\qr':'\\qc';
+  const safe=text.replace(/\\/g,'\\\\').replace(/\{/g,'\\{').replace(/\}/g,'\\}');
+  return `{\\rtf1\\ansi\\ansicpg1252 {\\fonttbl\\f0\\fswiss\\fcharset0 Helvetica-Bold;\\f1\\fswiss\\fcharset0 Helvetica;} {\\colortbl;\\red${rr}\\green${rg}\\blue${rb};} \\pard${qa}\\partightenfactor0 ${fn}\\fs${size*2} \\cf1 ${safe}}`;
+}
+
+function mkShp(id,x,y,w,h,opts){
+  const{shape='Rectangle',fillRgb,strokeRgb,sw=1,text,textSz=9,textBold=false,textRgb,textAlign='center',noFill=false,noStroke=false,mags=[]}=opts;
+  let fXml=noFill?'<key>Draws</key><string>NO</string>':`<key>Color</key>${xc(fillRgb)}`;
+  let sXml=noStroke?'<key>Draws</key><string>NO</string>':`<key>Color</key>${xc(strokeRgb)}<key>Width</key><real>${sw}</real>`;
+  let tXml='';
+  if(text&&textRgb){
+    const av=textAlign==='left'?0:textAlign==='right'?2:1;
+    tXml=`<key>Text</key><dict><key>Text</key><string>${xe(rtf(text,textSz,textBold,textRgb,textAlign))}</string><key>Align</key><integer>${av}</integer><key>VerticalPad</key><integer>3</integer><key>Pad</key><integer>3</integer></dict>`;
+  }
+  let mXml='';
+  if(mags.length) mXml=`<key>Magnets</key><array>${mags.map(m=>`<string>${m}</string>`).join('')}</array>`;
+  return `<dict>
+  <key>Bounds</key><string>{{${x},${y}},{${w},${h}}}</string>
+  <key>Class</key><string>ShapedGraphic</string>
+  <key>ID</key><integer>${id}</integer>
+  <key>Shape</key><string>${shape}</string>
+  <key>Style</key><dict>
+    <key>fill</key><dict>${fXml}</dict>
+    <key>shadow</key><dict><key>Draws</key><string>NO</string></dict>
+    <key>stroke</key><dict>${sXml}</dict>
+  </dict>
+  ${mXml}${tXml}
+</dict>`;
+}
+
+function buildGraffle(ext='.gstencil'){
+  _id=1;
+  const devName=document.getElementById('devName').value||'Device';
+  const DW=parseFloat(document.getElementById('devW').value)||320;
+  const DH=parseFloat(document.getElementById('devH').value)||480;
+  const BW=parseFloat(document.getElementById('bandW').value)||120;
+  const PS=parseFloat(document.getElementById('portSz').value)||14;
+  const bodyRgb=h2r(document.getElementById('bodyC').value);
+  const bordRgb=h2r(document.getElementById('borderC').value);
+  const textRgb=h2r(document.getElementById('textC').value);
+  const ins=gp('in'), outs=gp('out');
+  const DX=200,DY=100,TOP=50,BOT=30;
+  const PH=Math.max(PS+4,18); // port band height
+
+  function yD(n){
+    if(n===0)return[];
+    if(n===1)return[(DH-TOP-BOT)/2+TOP];
+    const s=(DH-TOP-BOT)/(n-1);
+    return Array.from({length:n},(_,i)=>TOP+i*s);
+  }
+  const iYs=yD(ins.length), oYs=yD(outs.length);
+
+  // Body magnets — placed at border, at each port's y
+  const bMags=[];
+  ins.forEach((p,i)=>{
+    const ny=((iYs[i]-DH/2)/(DH/2)).toFixed(4);
+    for(let m=0;m<p.mags;m++){
+      const off=p.mags>1?(m-(p.mags-1)/2)*0.022:0;
+      bMags.push(`{-1,${(parseFloat(ny)+off).toFixed(4)}}`);
+    }
+  });
+  outs.forEach((p,i)=>{
+    const ny=((oYs[i]-DH/2)/(DH/2)).toFixed(4);
+    for(let m=0;m<p.mags;m++){
+      const off=p.mags>1?(m-(p.mags-1)/2)*0.022:0;
+      bMags.push(`{1,${(parseFloat(ny)+off).toFixed(4)}}`);
+    }
+  });
+
+  const shapes=[];
+  const blk={r:0,g:0,b:0};
+  const titleSz=Math.min(12,Math.max(7,Math.floor((DW-BW*2-16)/12)));
+
+  // ── Body ──
+  shapes.push(mkShp(nid(),DX,DY,DW,DH,{
+    fillRgb:bodyRgb,strokeRgb:bordRgb,sw:2.5,
+    text:devName,textSz:titleSz,textBold:true,textRgb:textRgb,textAlign:'center',
+    mags:bMags,
+  }));
+
+  // ── Input ports (left side) ──
+  ins.forEach((p,i)=>{
+    const cy=DY+iYs[i];
+    const pc=h2r(p.color);
+    const band=darken(pc,0.45);
+
+    // Dark band inside body at left edge
+    shapes.push(mkShp(nid(),DX,cy-PH/2,BW,PH,{
+      fillRgb:band,strokeRgb:blk,noStroke:true,
+    }));
+    // SQUARE indicator — straddles left border (half in, half out) — THIS IS THE MAGNET
+    shapes.push(mkShp(nid(),DX-PS/2,cy-PS/2,PS,PS,{
+      shape:'Rectangle',fillRgb:pc,strokeRgb:blk,sw:0.75,
+      mags:['{-1,0}'],
+    }));
+    // Label text inside the band, to the right of the square
+    shapes.push(mkShp(nid(),DX+PS/2+3,cy-PH/2,BW-PS/2-6,PH,{
+      noFill:true,noStroke:true,
+      text:p.name,textSz:8,textRgb:textRgb,textAlign:'left',
+      fillRgb:blk,strokeRgb:blk,
+    }));
+  });
+
+  // ── Output ports (right side) ──
+  outs.forEach((p,i)=>{
+    const cy=DY+oYs[i];
+    const pc=h2r(p.color);
+    const band=darken(pc,0.45);
+
+    // Dark band inside body at right edge
+    shapes.push(mkShp(nid(),DX+DW-BW,cy-PH/2,BW,PH,{
+      fillRgb:band,strokeRgb:blk,noStroke:true,
+    }));
+    // CIRCLE indicator — straddles right border — THIS IS THE MAGNET
+    shapes.push(mkShp(nid(),DX+DW-PS/2,cy-PS/2,PS,PS,{
+      shape:'Circle',fillRgb:pc,strokeRgb:blk,sw:0.75,
+      mags:['{1,0}'],
+    }));
+    // Label text inside the band, left of the circle
+    shapes.push(mkShp(nid(),DX+DW-BW,cy-PH/2,BW-PS/2-6,PH,{
+      noFill:true,noStroke:true,
+      text:p.name,textSz:8,textRgb:textRgb,textAlign:'right',
+      fillRgb:blk,strokeRgb:blk,
+    }));
+  });
+
+  const items=shapes.join('\n');
+  return ext==='.gstencil' ? gstencilXml(items,devName) : grafflev8Xml(items,devName);
+}
+
+/* ── OmniGraffle .gstencil format (flat GraphicsList + Type:stencil) ── */
+function gstencilXml(items,title){
+  return`<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>CanvasColor</key><dict><key>w</key><string>1</string></dict>
+  <key>ColumnAlign</key><integer>1</integer>
+  <key>ColumnSpacing</key><real>36</real>
+  <key>GraphDocumentVersion</key><integer>8</integer>
+  <key>GraphicsList</key>
+  <array>
+${items}
+  </array>
+  <key>ImageCounter</key><integer>1</integer>
+  <key>LeftPadding</key><real>36</real>
+  <key>Orientation</key><integer>2</integer>
+  <key>ReadOnly</key><string>NO</string>
+  <key>RowAlign</key><integer>1</integer>
+  <key>RowSpacing</key><real>36</real>
+  <key>SheetTitle</key><string>${xe(title)}</string>
+  <key>TopPadding</key><real>36</real>
+  <key>Type</key><string>stencil</string>
+  <key>Version</key><integer>2</integer>
+  <key>WindowInfo</key><dict>
+    <key>CurrentSheet</key><integer>0</integer>
+    <key>Frame</key><string>{{0, 0}, {1440, 900}}</string>
+    <key>ListView</key><true/>
+    <key>Zoom</key><real>1</real>
+  </dict>
+</dict>
+</plist>`;
+}
+
+/* ── OmniGraffle .graffle v8 format (Sheets array structure) ── */
+function grafflev8Xml(items,title){
+  return`<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>GraphDocumentVersion</key><integer>8</integer>
+  <key>ReadOnly</key><string>NO</string>
+  <key>Sheets</key>
+  <array>
+    <dict>
+      <key>BackgroundGraphic</key><dict>
+        <key>Bounds</key><string>{{0, 0}, {576, 733}}</string>
+        <key>Class</key><string>SolidGraphic</string>
+        <key>ID</key><integer>2</integer>
+        <key>Style</key><dict>
+          <key>shadow</key><dict><key>Draws</key><string>NO</string></dict>
+          <key>stroke</key><dict><key>Draws</key><string>NO</string></dict>
+        </dict>
+      </dict>
+      <key>CanvasOrigin</key><string>{0, 0}</string>
+      <key>GraphicsList</key>
+      <array>
+${items}
+      </array>
+      <key>GridInfo</key><dict/>
+      <key>HRulerUnits</key><string>cm</string>
+      <key>Magnification</key><real>1</real>
+      <key>MasterSheets</key><array/>
+      <key>Orientation</key><integer>2</integer>
+      <key>PrintInfo</key><dict/>
+      <key>RowAlign</key><integer>1</integer>
+      <key>RowSpacing</key><real>36</real>
+      <key>SheetTitle</key><string>${xe(title)}</string>
+      <key>UniqueID</key><integer>1</integer>
+      <key>VRulerUnits</key><string>cm</string>
+    </dict>
+  </array>
+  <key>WindowInfo</key><dict>
+    <key>CurrentSheet</key><integer>0</integer>
+    <key>Frame</key><string>{{0, 0}, {1440, 900}}</string>
+    <key>ListView</key><true/>
+    <key>RightSidebar</key><false/>
+    <key>ShowRuler</key><true/>
+    <key>Sidebar</key><true/>
+    <key>SidebarWidth</key><real>120</real>
+    <key>Zoom</key><real>1</real>
+  </dict>
+</dict>
+</plist>`;
+}
+
+/* ── SVG Preview ───────────────────────────────── */
+function darkenHex(hex,f){
+  const r=h2r(hex);
+  return`rgb(${Math.round(r.r*f*255)},${Math.round(r.g*f*255)},${Math.round(r.b*f*255)})`;
+}
+function xv(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+function renderPrev(){
+  const devName=document.getElementById('devName').value||'Device';
+  const DW=parseFloat(document.getElementById('devW').value)||320;
+  const DH=parseFloat(document.getElementById('devH').value)||480;
+  const BW=parseFloat(document.getElementById('bandW').value)||120;
+  const PS=parseFloat(document.getElementById('portSz').value)||14;
+  const bodyC=document.getElementById('bodyC').value;
+  const bordC=document.getElementById('borderC').value;
+  const textC=document.getElementById('textC').value;
+  const ins=gp('in'),outs=gp('out');
+  const PH=Math.max(PS+4,18);
+  const TOP=50,BOT=30;
+
+  document.getElementById('inCnt').textContent=ins.length+(ins.length===1?' input':' inputs');
+  document.getElementById('outCnt').textContent=outs.length+(outs.length===1?' output':' outputs');
+
+  // SVG canvas — just enough padding for the straddling indicator
+  const PAD=PS/2+2;
+  const svgW=DW+PAD*2;
+  const svgH=DH+PAD*2+10;
+  const bx=PAD,by=PAD+5;
+
+  function yD(n){
+    if(n===0)return[];
+    if(n===1)return[(DH-TOP-BOT)/2+TOP];
+    const s=(DH-TOP-BOT)/(n-1);
+    return Array.from({length:n},(_,i)=>TOP+i*s);
+  }
+  const iYs=yD(ins.length),oYs=yD(outs.length);
+  const titleSz=Math.min(12,Math.max(7,Math.floor((DW-BW*2-16)/12)));
+
+  let s=`<svg xmlns="http://www.w3.org/2000/svg"
+    width="${Math.round(svgW*ZL)}" height="${Math.round(svgH*ZL)}"
+    viewBox="0 0 ${svgW} ${svgH}">
+  <style>text{font-family:-apple-system,Helvetica,sans-serif;}</style>
+  <rect x="${bx}" y="${by}" width="${DW}" height="${DH}" rx="2"
+    fill="${bodyC}" stroke="${bordC}" stroke-width="2.5"/>
+  <text x="${bx+DW/2}" y="${by+DH/2}" text-anchor="middle" dominant-baseline="middle"
+    font-size="${titleSz}" font-weight="700" fill="${textC}" opacity="0.5">${xv(devName)}</text>`;
+
+  // Inputs — left side, label+■ INSIDE body
+  ins.forEach((p,i)=>{
+    const cx=bx,cy=by+iYs[i];
+    const bf=darkenHex(p.color,0.45);
+    // Dark band inside body
+    s+=`<rect x="${cx}" y="${cy-PH/2}" width="${BW}" height="${PH}" fill="${bf}"/>`;
+    // Square ON border (half inside, half outside)
+    s+=`<rect x="${cx-PS/2}" y="${cy-PS/2}" width="${PS}" height="${PS}"
+      fill="${p.color}" stroke="#111" stroke-width="0.75"/>`;
+    // Label inside band
+    s+=`<text x="${cx+PS/2+3}" y="${cy+3.5}" text-anchor="start"
+      font-size="8" fill="${textC}">${xv(p.name)}</text>`;
+    if(p.mags>1) s+=`<text x="${cx-PS/2}" y="${cy-PS/2-2}"
+      font-size="6" fill="#aaa" text-anchor="middle">×${p.mags}</text>`;
+  });
+
+  // Outputs — right side, label+● INSIDE body
+  outs.forEach((p,i)=>{
+    const cx=bx+DW,cy=by+oYs[i];
+    const bf=darkenHex(p.color,0.45);
+    // Dark band inside body
+    s+=`<rect x="${cx-BW}" y="${cy-PH/2}" width="${BW}" height="${PH}" fill="${bf}"/>`;
+    // Circle straddling right border (half in, half out — same as square on left)
+    s+=`<circle cx="${cx}" cy="${cy}" r="${PS/2}"
+      fill="${p.color}" stroke="#111" stroke-width="0.75"/>`;
+    // Label inside band (right-aligned toward the circle)
+    s+=`<text x="${cx-PS/2-3}" y="${cy+3.5}" text-anchor="end"
+      font-size="8" fill="${textC}">${xv(p.name)}</text>`;
+    if(p.mags>1) s+=`<text x="${cx+PS/2}" y="${cy-PS/2-2}"
+      font-size="6" fill="#aaa" text-anchor="middle">×${p.mags}</text>`;
+  });
+
+  s+=`</svg>`;
+  document.getElementById('svgOut').innerHTML=s;
+}
+
+/* ── Zoom / Export ─────────────────────────────── */
+function zm(d){ZL=Math.max(.2,Math.min(3,ZL+d*.15));document.getElementById('zLbl').textContent=Math.round(ZL*100)+'%';refresh();}
+
+function dl(ext){
+  const xml=buildGraffle(ext);
+  const fn=(document.getElementById('fname').value||'stencil').replace(/\.(graffle|gstencil)$/,'')+ext;
+  const blob=new Blob([xml],{type:'application/xml'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download=fn;
+  document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
+}
+function cpXml(){navigator.clipboard.writeText(buildGraffle('.gstencil')).then(()=>{const b=event.target;b.textContent='✓ Copied!';setTimeout(()=>b.textContent='⎘ XML',2000);});}
+
+function refresh(){renderPrev();}
+
+/* ── Init with QIO-24F defaults ────────────────── */
+(function(){
+  [['Mic/Line In 1','#f28c14'],['Mic/Line In 2','#f28c14'],['Mic/Line In 3','#f28c14'],
+   ['Mic/Line In 4','#f28c14'],['Mic/Line In 5','#f28c14'],['Mic/Line In 6','#f28c14'],
+   ['Mic/Line In 7','#f28c14'],['Mic/Line In 8','#f28c14'],
+   ['Flex 1 In','#3d7fcc'],['Flex 2 In','#3d7fcc'],['Flex 3 In','#3d7fcc'],
+   ['Flex 4 In','#3d7fcc'],['Flex 5 In','#3d7fcc'],['Flex 6 In','#3d7fcc'],
+   ['Flex 7 In','#3d7fcc'],['Flex 8 In','#3d7fcc'],
+  ].forEach(([n,c])=>mkRow('in',n,c,1));
+
+  [['Line Out 1','#1ab862'],['Line Out 2','#1ab862'],['Line Out 3','#1ab862'],
+   ['Line Out 4','#1ab862'],['Line Out 5','#1ab862'],['Line Out 6','#1ab862'],
+   ['Line Out 7','#1ab862'],['Line Out 8','#1ab862'],
+   ['Flex 1 Out','#3d7fcc'],['Flex 2 Out','#3d7fcc'],['Flex 3 Out','#3d7fcc'],
+   ['Flex 4 Out','#3d7fcc'],['Flex 5 Out','#3d7fcc'],['Flex 6 Out','#3d7fcc'],
+   ['Flex 7 Out','#3d7fcc'],['Flex 8 Out','#3d7fcc'],
+  ].forEach(([n,c])=>mkRow('out',n,c,1));
+
+  refresh();
+})();
+</script>
+</body>
+</html>
